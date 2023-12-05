@@ -2,7 +2,7 @@
 Módulo que contém as classes e métodos para a construção dos sprites do jogo.
 """
 
-# import constants as cst
+import constants as cst
 
 import pygame as pg
 from pygame.locals import *
@@ -12,7 +12,16 @@ class Render:
     """
     Classe que renderiza imagens na tela.
     """
-    pass
+
+    def __init__(self, display, scale, path_image, *groups) -> None:
+        self.display = display
+        if groups:
+           self.groups = groups[0]
+        self.image = pg.image.load(path_image)
+        self.image = pg.transform.scale(self.image, scale)
+        self.rect = self.image.get_rect()
+        self.mask = pg.mask.from_surface(self.image)
+
 
 class Background(pg.sprite.Sprite, Render):
     """

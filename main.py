@@ -3,7 +3,10 @@ Módulo Principal
 """
 
 # Importando as Bibliotecas 
-from game import SpacialGame
+import sys
+sys.path.insert(0, "./src")
+
+from src.game import SpacialGame
 
 # Inicializando o Jogo
 SpacialGame()

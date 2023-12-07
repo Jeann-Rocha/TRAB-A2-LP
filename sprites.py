@@ -105,7 +105,25 @@ class Player(pg.sprite.Sprite, Render):
         if self.rect.right > self.display.get_width():
             self.rect.right = self.display.get_width()
 
-    pass
+    def shoot_player(self):
+        """
+        Método que atualiza os tiros do player.
+        """
+
+        self.timer_shoot += 1
+        if self.timer_shoot > self.timer_shoot_max:
+            if self.keys[K_SPACE]:
+                self.timer_shoot = 0
+                Shoot(self.display, cst.SCALE_SHOOT, cst.SHOOT_PLAYER, self.rect.topright, False, 0, (self.groups[0], self.group_shoot))
+                shoot_sound = pg.mixer.Sound(cst.SHOOT_SOUND)
+                shoot_sound.play()
+
+
+    def increase_fire_rate(self):
+        self.timer_shoot_max = 2 
+
+    def increase_speed(self):
+        self.speed = 40 
 
 
 class Obstacle(pg.sprite.Sprite, Render):

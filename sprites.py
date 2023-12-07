@@ -56,7 +56,55 @@ class Player(pg.sprite.Sprite, Render):
         self.animate()
         self.movements()
         self.shoot_player()
-        
+
+    def movements(self):
+        """
+        Método que atualiza os movimentos do player e limita os mesmos
+        para as bordas da tela.
+        """
+
+        # diagonal superior esquerda
+        if self.keys[K_UP] and self.keys[K_LEFT]:
+            self.rect.x -= self.speed
+            self.rect.y -= self.speed
+        # diagonal superior direita
+        elif self.keys[K_UP] and self.keys[K_RIGHT]:
+            self.rect.x += self.speed
+            self.rect.y -= self.speed
+        # diagonal inferior esquerda
+        elif self.keys[K_DOWN] and self.keys[K_LEFT]:
+            self.rect.x -= self.speed
+            self.rect.y += self.speed
+        # diagonal inferior direita
+        elif self.keys[K_DOWN] and self.keys[K_RIGHT]:
+            self.rect.x += self.speed
+            self.rect.y += self.speed
+        # cima
+        elif self.keys[K_UP]:
+            self.rect.y -= self.speed
+        # baixo
+        elif self.keys[K_DOWN]:
+            self.rect.y += self.speed
+        # esquerda
+        elif self.keys[K_LEFT]:
+            self.rect.x -= self.speed
+        # direita
+        elif self.keys[K_RIGHT]:
+            self.rect.x += self.speed
+
+        # borda superior
+        if self.rect.top < 0:
+            self.rect.top = 0
+        # borda inferior
+        if self.rect.bottom > self.display.get_height():
+            self.rect.bottom = self.display.get_height()
+        # borda lateral esquerda
+        if self.rect.left < 0:
+            self.rect.left = 0
+        # borda lateral direita
+        if self.rect.right > self.display.get_width():
+            self.rect.right = self.display.get_width()
+
     pass
 
 

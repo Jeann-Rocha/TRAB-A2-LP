@@ -7,6 +7,7 @@ import constants as cst
 import pygame as pg
 from pygame.locals import *
 import random
+import threading
 
 class Render:
     """
@@ -64,6 +65,12 @@ class Player(pg.sprite.Sprite, Render):
         self.group_shoot = group_shoot
         self.lifes = 3
         self.speed = 30
+
+        self.shooting_enabled = True
+        self.reset_timer = None
+
+        self.increase_speed_enabled = True
+        self.reset_speed_timer = None
 
     def update(self):
         """
@@ -140,10 +147,40 @@ class Player(pg.sprite.Sprite, Render):
 
 
     def increase_fire_rate(self):
-        self.timer_shoot_max = 2 
+        """
+        Método para aumentar temporariamente a taxa de tiro.
+        """
+        self.shooting_enabled = False
+        self.timer_shoot_max = 2
+
+        # Inicia um temporizador para voltar ao timer_shoot_max após 10 segundos
+        self.reset_timer = threading.Timer(10, self._reset_fire_rate)
+        self.reset_timer.start()
+
+    def _reset_fire_rate(self):
+        """
+        Método chamado pelo temporizador para reverter as alterações após a duração.
+        """
+        self.timer_shoot_max = 10
+        self.shooting_enabled = True
 
     def increase_speed(self):
-        self.speed = 40 
+        """
+        Método para aumentar temporariamente a velocidade do player.
+        """
+        self.increase_speed_enabled = False
+        self.speed = 50
+
+        # Inicia um temporizador para voltar ao speed após 10 segundos
+        self.reset_speed_timer = threading.Timer(10, self._reset_speed)
+        self.reset_speed_timer.start()
+
+    def _reset_speed(self):
+        """
+        Método chamado pelo temporizador para reverter as alterações após a duração.
+        """
+        self.speed = 30
+        self.increase_speed_enabled = True
 
 
 class Obstacle(pg.sprite.Sprite, Render):

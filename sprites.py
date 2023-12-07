@@ -187,7 +187,43 @@ class Obstacle(pg.sprite.Sprite, Render):
     """
     Classe de Sprite(s) para os obstáculos do jogo.
     """
-    pass
+    
+    is_boss = False
+    timer_shoot = 0
+
+    def __init__(self, display, scale, path_images, speed_increment, *groups, group_shoot) -> None:
+        pg.sprite.Sprite.__init__(self, *groups)
+        Render.__init__(self, display, scale, path_images, *groups)
+
+        self.group_shoot = group_shoot
+        self.rect.x = self.display.get_width()
+        self.rect.y = random.randint(0, display.get_height() - scale[1])
+        self.speed_increment = speed_increment
+        self.speed = speed_increment / 5 + random.randint(10, 30)
+
+
+    def update(self):
+        """
+        Método que atualiza os movimentos dos obstáculos, que estão
+        pré-definidos pelo jogo.
+        """
+
+        if not self.rect.right < 0 and not self.exploded:
+            self.display.blit(self.image, (self.rect.x, self.rect.y))
+
+            self.rect.x -= self.speed
+
+            if not self.is_boss:
+                self.new_obstacles()
+            self.shoot_obstacles()
+            self.animate()
+        else:
+            self.display.blit(self.image, (self.rect.x, self.rect.y))
+            self.animate_explosion()
+
+        if self.rect.right < 0 or self.exploded:
+            self.groups[1].remove(self)
+
 
 
 class Shoot(pg.sprite.Sprite, Render):

@@ -232,18 +232,18 @@ class Shoot(pg.sprite.Sprite, Render):
     Classe de Sprite(s) para os disparos (tiros) do jogo.
     """
 
-    def __init__(self, display, scale, path_image, pos, is_obstacle=False, speed_obstacle=0, *groups) -> None:
+    def __init__(self, display, scale, path_images, pos, speed_sprite, is_obstacle=False, *groups) -> None:
         pg.sprite.Sprite.__init__(self, *groups)
-        Render.__init__(self, display, scale, path_image, *groups)
+        Render.__init__(self, display, scale, path_images, *groups)
 
         self.is_obstacle = is_obstacle
+        self.obstacle = None
         self.rect.x = pos[0]
         self.rect.y = pos[1]
+        shoot_sound = pg.mixer.Sound(cst.SHOOT_SOUND)
+        shoot_sound.play()
 
-        if self.is_obstacle:
-            self.speed = speed_obstacle + 5
-        else:
-            self.speed = 25
+        self.speed = speed_sprite + 5
     
 
     def update(self):
@@ -253,6 +253,8 @@ class Shoot(pg.sprite.Sprite, Render):
         """
 
         self.display.blit(self.image, (self.rect.x, self.rect.y))
+
+        self.animate()
 
         if self.is_obstacle:
             self.rect.x -= self.speed

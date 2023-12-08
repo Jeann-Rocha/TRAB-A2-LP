@@ -225,6 +225,33 @@ class Obstacle(pg.sprite.Sprite, Render):
         if self.rect.right < 0 or self.exploded:
             self.groups[1].remove(self)
 
+    def new_obstacles(self):
+        """
+        Método que gera (aleatoriamente) novos obstáculos.
+        """
+
+        new_obstacles = random.randint(1, 4)
+        if len(self.groups[1].sprites()) <= 2:
+            if random.random() < 0.03:
+                for _ in range(new_obstacles):
+                    Obstacle(self.display, cst.SCALE_OBSTACLE, cst.OBSTACLE, self.speed_increment, (self.groups[0], self.groups[1]), group_shoot=self.group_shoot)
+
+
+    def shoot_obstacles(self):
+        """
+        Método que atualiza os tiros do obstáculo.
+        """
+
+        self.timer_shoot += 1
+        if self.timer_shoot > 70:
+            self.timer_shoot = 0
+            obstacles_choice = random.sample(self.groups[1].sprites(), random.randint(0, len(self.groups[1].sprites())))
+            for oc in obstacles_choice:
+                Shoot(self.display, cst.SCALE_SHOOT, cst.SHOOT_OBSTACLE, (oc.rect.left, oc.rect.centery), True, oc.speed, (self.groups[0], self.group_shoot))
+            for ob in self.groups[1].sprites():
+                ob.timer_shoot = 0
+            shoot_sound = pg.mixer.Sound(cst.SHOOT_SOUND)
+            shoot_sound.play()
 
 
 class Shoot(pg.sprite.Sprite, Render):

@@ -8,6 +8,7 @@ import pygame as pg
 from pygame.locals import *
 import random
 import threading
+import time
 
 class Render:
     """
@@ -269,4 +270,70 @@ class Boss(pg.sprite.Sprite, Render):
     """
     Classe de Sprite(s) para o boss do jogo.
     """
-    pass
+
+    speedx = 5
+
+    def __init__(self, display, scale, path_images, speed_increment, *groups, group_shoot) -> None:
+        pg.sprite.Sprite.__init__(self, *groups)
+        Render.__init__(self, display, scale, path_images, *groups)
+
+        self.animation_speed = 10
+        self.lifes = 10
+        self.rect.x = self.display.get_width()
+        self.rect.y = 0
+        self.speedy = speed_increment / 5 + 20
+        self.verificate_speedy = "DOWN"
+        self.speed = speed_increment / 5
+
+        self.group_shoot = group_shoot
+        self.last_shoot_time = 0
+        self.start_time = time.time()
+        boss_sound = pg.mixer.Sound(cst.BOSS_SOUND_1)
+        boss_sound.play()
+
+
+    def shoot_boss(self):
+        current_time = time.time() + 2
+        time_on_screen = current_time - self.start_time
+
+        if time_on_screen >= 5 and current_time - self.last_shoot_time >= 2:
+                self.last_shoot_time = current_time
+                Shoot(self.display, cst.SCALE_SHOOT_BOSS, cst.SHOOT_BOSS, (self.rect.left, random.uniform(self.rect.top, self.rect.bottom)), self.speed, True, (self.groups[0], self.group_shoot))
+
+
+    def update(self):
+        """
+        Método que atualiza os movimentos do boss, que estão
+        pré-definidos pelo jogo.
+        """
+
+        if self.rect.right < 0 or self.exploded:
+            self.groups[1].remove(self)
+
+        self.display.blit(self.image, (self.rect.x, self.rect.y))
+
+        self.rect.x -= self.speedx
+
+        if self.rect.right <= self.display.get_width():
+            self.speedx = 0
+
+        if self.speedx == 0:
+            if not self.exploded:
+                if self.rect.top < 0:
+                    self.verificate_speedy = "DOWN"
+                if self.rect.bottom > self.display.get_height():
+                    self.verificate_speedy = "UP"
+                if self.verificate_speedy == "DOWN":
+                    self.rect.y += self.speedy
+                elif self.verificate_speedy == "UP":
+                    self.rect.y -= self.speedy
+                self.animate()
+            else:
+                self.display.blit(self.image, (self.rect.x, self.rect.y))
+                self.animate_explosion()
+
+        if self.lifes <= 0:
+            self.exploded = True
+            self.groups[1].empty()
+        self.shoot_boss()
+

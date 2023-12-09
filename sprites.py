@@ -80,7 +80,7 @@ class Player(pg.sprite.Sprite, Render):
         self.increase_speed_enabled = True
         self.reset_speed_timer = None
 
-    def update(self):
+    def update(self) -> None:
         """
         Método que atualiza os movimentos e tiros do player.
         """
@@ -100,7 +100,7 @@ class Player(pg.sprite.Sprite, Render):
         self.shoot_player()
         self.draw_lifes()
 
-    def movements(self):
+    def movements(self) -> None:
         """
         Método que atualiza os movimentos do player e limita os mesmos
         para as bordas da tela.
@@ -158,21 +158,19 @@ class Player(pg.sprite.Sprite, Render):
         for n in range(self.lifes):
             life.display.blit(life.image, (20 + 50 * n, 20))
 
-    def shoot_player(self):
+    def shoot_player(self) -> None:
         """
         Método que atualiza os tiros do player.
         """
 
         self.timer_shoot += 1
         if self.timer_shoot > self.timer_shoot_max:
-            if self.keys[K_SPACE]:
+            if self.keys[K_j]:
                 self.timer_shoot = 0
-                Shoot(self.display, cst.SCALE_SHOOT, cst.SHOOT_PLAYER, self.rect.topright, False, 0, (self.groups[0], self.group_shoot))
-                shoot_sound = pg.mixer.Sound(cst.SHOOT_SOUND)
-                shoot_sound.play()
+                Shoot(self.display, cst.SCALE_SHOOT, cst.SHOOT_PLAYER, self.rect.topright, self.speed, False, (self.groups[0], self.group_shoot))
 
 
-    def increase_fire_rate(self):
+    def increase_fire_rate(self) -> None:
         """
         Método para aumentar temporariamente a taxa de tiro.
         """
@@ -183,31 +181,37 @@ class Player(pg.sprite.Sprite, Render):
         self.reset_timer = threading.Timer(10, self._reset_fire_rate)
         self.reset_timer.start()
 
-    def _reset_fire_rate(self):
+    def _reset_fire_rate(self) -> None:
         """
         Método chamado pelo temporizador para reverter as alterações após a duração.
         """
         self.timer_shoot_max = 10
         self.shooting_enabled = True
 
-    def increase_speed(self):
+    def increase_speed(self) -> None:
         """
         Método para aumentar temporariamente a velocidade do player.
         """
         self.increase_speed_enabled = False
         self.speed = 50
+        self.animation_speed = 1
 
         # Inicia um temporizador para voltar ao speed após 10 segundos
         self.reset_speed_timer = threading.Timer(10, self._reset_speed)
         self.reset_speed_timer.start()
 
-    def _reset_speed(self):
+    def _reset_speed(self) -> None:
         """
         Método chamado pelo temporizador para reverter as alterações após a duração.
         """
         self.speed = 30
         self.increase_speed_enabled = True
 
+    def increase_hearth(self) -> None:
+        """
+        Método para aumentar a vida do player.
+        """
+        self.lifes += 1
 
 class Obstacle(pg.sprite.Sprite, Render):
     """

@@ -57,15 +57,22 @@ class Player(pg.sprite.Sprite, Render):
     Classe de Sprite(s) para o player (jogador) do jogo.
     """
 
-    def __init__(self, display, scale, path_images, *groups, group_shoot) -> None:
+    def __init__(self, display: pg.Surface , scale: list, path_images: list, *groups, group_shoot: pg.sprite.Group) -> None:
         pg.sprite.Sprite.__init__(self, *groups)
         Render.__init__(self, display, scale, path_images, *groups)
+
+        # posição inicial do player
+        self.rect.x = 0
+        self.rect.y = self.display.get_height() // 2
 
         self.timer_shoot = 0
         self.timer_shoot_max = 10
         self.group_shoot = group_shoot
+
+        self.damaged = False # indicador de que o player levou dano
         self.lifes = 3
         self.speed = 30
+        self.animation_speed = 10
 
         self.shooting_enabled = True
         self.reset_timer = None

@@ -462,3 +462,46 @@ class Boss(pg.sprite.Sprite, Render):
         if self.exploded:
             self.groups[1].remove(self)
 
+class Items(pg.sprite.Sprite, Render):
+    """
+    Classe de sprite(s) para os itens do jogo.
+    """
+
+    def __init__(self, display: pg.Surface, scale: list, path_images: list, item_type: str, *groups, player: pg.sprite.Group) -> None:
+        pg.sprite.Sprite.__init__(self, *groups)
+        Render.__init__(self, display, scale, path_images, *groups)
+        
+        self.rect.x = self.display.get_width()
+        self.rect.y = random.randint(0, display.get_height() - scale[1])
+
+        self.speed = 5
+        self.animation_speed = 1
+
+        self.player = player
+        self.item_type = item_type # pode ser "fire_rate", "speed" ou "hearth"
+
+    def apply_effect(self) -> None:
+        """
+        Método que aplica o efeito do item (que pode ser temporário) ao jogador
+        """
+
+        if self.item_type == "fire_rate": # efeito de cadência no tiro (efeito temporário)
+            self.player.increase_fire_rate()
+        elif self.item_type == "speed": # efeito de velocidade no player (efeito temporário)
+            self.player.increase_speed()
+        elif self.item_type == "hearth": # efeito de escudo no player (efeito permanente)
+            self.player.increase_hearth()
+
+    def update(self) -> None:
+        """
+        Método que atualiza a geração de um item no decorrer do jogo.
+        """
+
+        self.display.blit(self.image, (self.rect.x, self.rect.y))
+
+        self.rect.x -= self.speed
+
+        self.animate()
+
+        if self.rect.right < 0:
+            self.kill()

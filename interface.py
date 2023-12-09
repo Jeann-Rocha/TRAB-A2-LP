@@ -102,11 +102,63 @@ class Button(UIElement):
         text.draw()
 
 
-class Interface:
+class Interface(ABC):
     """
-    Classe que controla os atributos e métodos comuns a cada interface do jogo.
+    Classe abstrata que controla a interface de Tela de início do jogo.
     """
-    pass
+
+    def __init__(self, display: pg.Surface) -> None:
+        self.display = display
+        self.width, self.height = display.get_width(), display.get_height() 
+        self.waiting_player = True
+        self.clock = pg.time.Clock()
+        self.active_credit = False
+        self.active_reset = False
+
+    @abstractmethod
+    def run(self) -> None:
+        """
+        Método abstrato que atualiza a interface.
+        """
+
+        pass
+
+    def load_background(self, background_path: str) -> None:
+        """
+        Método que renderiza um background para a interface.
+        """
+
+        background = sp.Background(self.display, cst.SCALE_BACKGROUND, [background_path])
+        self.display.blit(background.image, (0, 0))
+
+    def quit(self) -> None:
+        """
+        Método que fecha o jogo.
+        """
+
+        pg.quit()
+        sys.exit()
+
+    def handle_button_press(self, button: Button) -> None:
+        """
+        Método que verifica o tipo de butão que foi pressionado e
+        faz a devida alteração a depender do tipo de butão.
+        """
+
+        if button.is_pressed:
+            if button.text == "PLAY": # específico da Tela de Início
+                pg.mixer.music.stop()
+            elif button.text == "RETURN TO MENU": # específico da Tela de Pause e de Reset
+                pg.mixer.music.stop()
+                self.active_reset = True # ativa a variável que permite o resetamento do jogo
+            elif button.text == "CREDITS": # específico da Tela de Início
+                self.active_credit = True # ativa a variável que permite a entrada nos créditos
+            elif button.text == "RETURN TO GAME": # específico da Tela de Pause
+                pass
+            elif button.text == "EXIT": # específico da Tela de Início e de Reset
+                self.quit()
+
+            self.waiting_player = False # comum a todas as condições acima
 
 
 class Title(Interface):

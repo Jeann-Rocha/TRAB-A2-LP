@@ -85,12 +85,20 @@ class Player(pg.sprite.Sprite, Render):
         Método que atualiza os movimentos e tiros do player.
         """
 
-        self.display.blit(self.image, (self.rect.x, self.rect.y))
+        if self.damaged:
+            self.damaged = False
+            # colocar som de dano no player...
+        else:
+            self.display.blit(self.image, (self.rect.x, self.rect.y))
+
         self.keys = pg.key.get_pressed()
 
         self.animate()
+        if self.animation_speed >= 2:
+            self.animation_speed -= 0.05 # efetio contínuo de aumento da velocidade
         self.movements()
         self.shoot_player()
+        self.draw_lifes()
 
     def movements(self):
         """
@@ -99,32 +107,32 @@ class Player(pg.sprite.Sprite, Render):
         """
 
         # diagonal superior esquerda
-        if self.keys[K_UP] and self.keys[K_LEFT]:
+        if self.keys[K_w] and self.keys[K_a]:
             self.rect.x -= self.speed
             self.rect.y -= self.speed
         # diagonal superior direita
-        elif self.keys[K_UP] and self.keys[K_RIGHT]:
+        elif self.keys[K_w] and self.keys[K_d]:
             self.rect.x += self.speed
             self.rect.y -= self.speed
         # diagonal inferior esquerda
-        elif self.keys[K_DOWN] and self.keys[K_LEFT]:
+        elif self.keys[K_s] and self.keys[K_a]:
             self.rect.x -= self.speed
             self.rect.y += self.speed
         # diagonal inferior direita
-        elif self.keys[K_DOWN] and self.keys[K_RIGHT]:
+        elif self.keys[K_s] and self.keys[K_d]:
             self.rect.x += self.speed
             self.rect.y += self.speed
         # cima
-        elif self.keys[K_UP]:
+        elif self.keys[K_w]:
             self.rect.y -= self.speed
         # baixo
-        elif self.keys[K_DOWN]:
+        elif self.keys[K_s]:
             self.rect.y += self.speed
         # esquerda
-        elif self.keys[K_LEFT]:
+        elif self.keys[K_a]:
             self.rect.x -= self.speed
         # direita
-        elif self.keys[K_RIGHT]:
+        elif self.keys[K_d]:
             self.rect.x += self.speed
 
         # borda superior

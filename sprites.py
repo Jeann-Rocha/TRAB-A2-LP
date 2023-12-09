@@ -324,34 +324,48 @@ class Shoot(pg.sprite.Sprite, Render):
                 self.kill()
 
 
-
 class Boss(pg.sprite.Sprite, Render):
     """
     Classe de Sprite(s) para o boss do jogo.
     """
 
-    speedx = 5
-
-    def __init__(self, display, scale, path_images, speed_increment, *groups, group_shoot) -> None:
+    def __init__(self, display: pg.Surface, scale: list, path_images: list, speed_increment: float, lifes: int, *groups, group_shoot: pg.sprite.Group) -> None:
         pg.sprite.Sprite.__init__(self, *groups)
         Render.__init__(self, display, scale, path_images, *groups)
 
-        self.animation_speed = 10
-        self.lifes = 10
         self.rect.x = self.display.get_width()
         self.rect.y = 0
-        self.speedy = speed_increment / 5 + 20
-        self.verificate_speedy = "DOWN"
+
+        self.speedx = 5 # velocidade de entrada
+        self.speedy = speed_increment / 5 + 20 # velocidade de continuação
+        self.verificate_speedy = "DOWN" # verifica se o boss já apareceu completamente na tela
         self.speed = speed_increment / 5
+        self.animation_speed = 8
 
         self.group_shoot = group_shoot
         self.last_shoot_time = 0
         self.start_time = time.time()
+
+        self.lifes = lifes
+        self.damaged = False # indicador de que o boss levou dano
+
+        # som de entrada do boss
         boss_sound = pg.mixer.Sound(cst.BOSS_SOUND_1)
         boss_sound.play()
 
+    def draw_life(self) -> None:
+        """
+        Método que desenha no canto inferior direito da tela uma barra vermelha com a vida do boss.
+        """
 
-    def shoot_boss(self):
+        bar_life_width = int((self.lifes / 10) * 200)
+        pg.draw.rect(self.display, cst.RED, (self.display.get_width() - bar_life_width - 10, self.display.get_height() - 50, bar_life_width, 10))
+
+    def shoot_boss(self) -> None:
+        """
+        Método que atualiza os tiros do boss.
+        """
+        
         current_time = time.time() + 2
         time_on_screen = current_time - self.start_time
 
@@ -359,24 +373,24 @@ class Boss(pg.sprite.Sprite, Render):
                 self.last_shoot_time = current_time
                 Shoot(self.display, cst.SCALE_SHOOT_BOSS, cst.SHOOT_BOSS, (self.rect.left, random.uniform(self.rect.top, self.rect.bottom)), self.speed, True, (self.groups[0], self.group_shoot))
 
-
-    def update(self):
+    def update(self) -> None:
         """
         Método que atualiza os movimentos do boss, que estão
         pré-definidos pelo jogo.
         """
 
-        if self.rect.right < 0 or self.exploded:
-            self.groups[1].remove(self)
-
-        self.display.blit(self.image, (self.rect.x, self.rect.y))
+        if self.damaged:
+            self.damaged = False
+            # colocar som de dano no boss...
+        else:
+            self.display.blit(self.image, (self.rect.x, self.rect.y))
 
         self.rect.x -= self.speedx
 
-        if self.rect.right <= self.display.get_width():
+        if self.rect.right <= self.display.get_width(): # enquanto ocorre a entrada do boss
             self.speedx = 0
 
-        if self.speedx == 0:
+        if self.speedx == 0: # após a entrada do boss (movimento de vai-e-vem para cima e para baixo)
             if not self.exploded:
                 if self.rect.top < 0:
                     self.verificate_speedy = "DOWN"
@@ -387,6 +401,8 @@ class Boss(pg.sprite.Sprite, Render):
                 elif self.verificate_speedy == "UP":
                     self.rect.y -= self.speedy
                 self.animate()
+                self.draw_life()
+                self.shoot_boss()
             else:
                 self.display.blit(self.image, (self.rect.x, self.rect.y))
                 self.animate_explosion()
@@ -394,5 +410,7 @@ class Boss(pg.sprite.Sprite, Render):
         if self.lifes <= 0:
             self.exploded = True
             self.groups[1].empty()
-        self.shoot_boss()
+
+        if self.exploded:
+            self.groups[1].remove(self)
 

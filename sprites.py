@@ -76,15 +76,15 @@ class Background(pg.sprite.Sprite, Render):
     """
     Classe de Sprite(s) para o cenário do jogo.
     """
-    def __init__(self, display, scale, path_images, *groups) -> None:
+
+    def __init__(self, display: pg.Surface, scale: list, path_images: list, *groups) -> None:
         pg.sprite.Sprite.__init__(self, *groups)
         Render.__init__(self, display, scale, path_images, *groups)
         
         self.pos_width = self.display.get_width()
-        self.speed = 1
+        self.speed = 1 # velocidade de movimento do background
 
-
-    def update(self):
+    def update(self) -> None:
         """
         Método que atualiza o background para movimentar-se enquanto o jogador
         estiver jogando para dar um efeito de dinamicidade ao jogo.
@@ -92,9 +92,9 @@ class Background(pg.sprite.Sprite, Render):
 
         self.display.blit(self.image, (0, 0))
 
-        rel_x = self.pos_width % self.image.get_rect().width
-        self.display.blit(self.image, (rel_x - self.image.get_rect().width, 0))
-        if rel_x < 1200:
+        rel_x = self.pos_width % self.image.get_rect().width # efeito contínuo de deslocamento horizontal
+        self.display.blit(self.image, (rel_x - self.image.get_rect().width, 0)) # redesenha a imagem na tela
+        if rel_x < cst.WIDTH:
             self.display.blit(self.image, (rel_x, 0))
         self.pos_width -= self.speed
 

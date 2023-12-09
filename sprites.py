@@ -218,21 +218,23 @@ class Obstacle(pg.sprite.Sprite, Render):
     Classe de Sprite(s) para os obstáculos do jogo.
     """
     
-    is_boss = False
-    timer_shoot = 0
+    is_boss = False # atríbuto global para indicar se há um boss (obstáculos e boss não atuam simultaneamente)
 
-    def __init__(self, display, scale, path_images, speed_increment, *groups, group_shoot) -> None:
+    def __init__(self, display: pg.Surface, scale: list, path_images: list, speed_increment: float, *groups, group_shoot: pg.sprite.Group) -> None:
         pg.sprite.Sprite.__init__(self, *groups)
         Render.__init__(self, display, scale, path_images, *groups)
 
         self.group_shoot = group_shoot
         self.rect.x = self.display.get_width()
-        self.rect.y = random.randint(0, display.get_height() - scale[1])
+        self.rect.y = random.randint(0, display.get_height() - scale[1]) # posição aleatória em relação a altura da tela
+        self.timer_shoot = 0
+        self.timer_shoot_max = 50
+        self.min_speed, self.max_speed = 20, 30 # constantes que randomizam a velocidade dos obstáculos
         self.speed_increment = speed_increment
-        self.speed = speed_increment / 5 + random.randint(10, 30)
+        self.speed = speed_increment / 5 + random.randint(self.min_speed, self.max_speed)
 
 
-    def update(self):
+    def update(self) -> None:
         """
         Método que atualiza os movimentos dos obstáculos, que estão
         pré-definidos pelo jogo.
@@ -247,40 +249,38 @@ class Obstacle(pg.sprite.Sprite, Render):
                 self.new_obstacles()
             self.shoot_obstacles()
             self.animate()
-        else:
+        elif self.exploded: # o surgimento do boss explode os obstáculos existentes na tela
             self.display.blit(self.image, (self.rect.x, self.rect.y))
             self.animate_explosion()
 
         if self.rect.right < 0 or self.exploded:
             self.groups[1].remove(self)
 
-    def new_obstacles(self):
+    def new_obstacles(self) -> None:
         """
         Método que gera (aleatoriamente) novos obstáculos.
         """
 
-        new_obstacles = random.randint(1, 4)
-        if len(self.groups[1].sprites()) <= 2:
-            if random.random() < 0.03:
+        new_obstacles = random.randint(1, 4) # quantidade aleatória entre 1 e 4 obstáculos a ser gerada
+        if len(self.groups[1].sprites()) <= 2: # condição para ter mais obstáculos (veja que o máximo tem que ser 2 + 4 = 6)
+            if random.random() < 0.03: # probabilidade de 3% de gerar mais obstáculos
                 for _ in range(new_obstacles):
                     Obstacle(self.display, cst.SCALE_OBSTACLE, cst.OBSTACLE, self.speed_increment, (self.groups[0], self.groups[1]), group_shoot=self.group_shoot)
 
 
-    def shoot_obstacles(self):
+    def shoot_obstacles(self) -> None:
         """
         Método que atualiza os tiros do obstáculo.
         """
 
         self.timer_shoot += 1
-        if self.timer_shoot > 70:
+        if self.timer_shoot > self.timer_shoot_max:
             self.timer_shoot = 0
-            obstacles_choice = random.sample(self.groups[1].sprites(), random.randint(0, len(self.groups[1].sprites())))
+            obstacles_choice = random.sample(self.groups[1].sprites(), random.randint(0, len(self.groups[1].sprites()))) # escolhe uma amostra da quantidade de obstáculos na tela para atirar
             for oc in obstacles_choice:
-                Shoot(self.display, cst.SCALE_SHOOT, cst.SHOOT_OBSTACLE, (oc.rect.left, oc.rect.centery), True, oc.speed, (self.groups[0], self.group_shoot))
+                Shoot(self.display, cst.SCALE_SHOOT, cst.SHOOT_OBSTACLE, (oc.rect.left, oc.rect.centery), oc.speed, True, (self.groups[0], self.group_shoot))
             for ob in self.groups[1].sprites():
                 ob.timer_shoot = 0
-            shoot_sound = pg.mixer.Sound(cst.SHOOT_SOUND)
-            shoot_sound.play()
 
 
 class Shoot(pg.sprite.Sprite, Render):

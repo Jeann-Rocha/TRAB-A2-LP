@@ -148,6 +148,16 @@ class Player(pg.sprite.Sprite, Render):
         if self.rect.right > self.display.get_width():
             self.rect.right = self.display.get_width()
 
+    def draw_lifes(self) -> None:
+        """
+        Método que desenha no canto superior esquerdo da tela as vidas que o player tem.
+        """
+
+        life = Render(self.display, cst.SCALE_LIFE, cst.LIFE, self.groups[0])
+
+        for n in range(self.lifes):
+            life.display.blit(life.image, (20 + 50 * n, 20))
+
     def shoot_player(self):
         """
         Método que atualiza os tiros do player.

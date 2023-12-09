@@ -108,11 +108,42 @@ class Title(Interface):
     pass
 
 
-class Settings(Interface):
+
+class Credits(Interface):
     """
-    Classe que controla a interface de Tela de configurações do jogo.
+    Classe que controla a interface de Créditos do jogo.
     """
-    pass
+
+    def __init__(self, display: pg.Surface) -> None:
+        super().__init__(display)
+
+    def run(self) -> None:
+        """
+        Método que atualiza a interface para a Tela de Créditos.
+        """
+        text_colaboradores = Text(self.display, "COLABORADORES", cst.FONT, cst.BLACK, 60, [self.width // 2, 100])
+        colaborador_1 = Text(self.display, "Alessandra Bello", cst.FONT, cst.WHITE, 30, [self.width // 2, 170])
+        colaborador_2 = Text(self.display, "Edgard Junio", cst.FONT, cst.WHITE, 30, [self.width // 2, 240])
+        colaborador_3 = Text(self.display, "Gilherme Ferrari", cst.FONT, cst.WHITE, 30, [self.width // 2, 310])
+        colaborador_4 = Text(self.display, "Jeann Rocha", cst.FONT, cst.WHITE, 30, [self.width // 2, 380])
+        exit_button = Button(self.display, "RETURN TO MENU", cst.FONT, cst.GREEN, 15, [self.width // 2, self.height - 110], 150, 30)
+
+        while self.waiting_player:
+            for event in pg.event.get():
+                if event.type == QUIT:
+                    self.quit()
+            self.handle_button_press(exit_button)
+            self.load_background(cst.BACKGROUND_PAUSE)
+
+            text_colaboradores.draw()
+            colaborador_1.draw()
+            colaborador_2.draw()
+            colaborador_3.draw()
+            colaborador_4.draw()
+            exit_button.draw()
+
+            self.clock.tick(cst.FPS)
+            pg.display.update()  
 
 
 class Pause(Interface):

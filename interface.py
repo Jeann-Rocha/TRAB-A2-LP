@@ -2,11 +2,16 @@
 Módulo que contém as classes e métodos para a construção dos tipos de interface do jogo.
 """
 
+# Importando as bibliotecas
+import sys
+from abc import ABC, abstractmethod
+
 import pygame as pg
 from pygame.locals import *
 
-# import constants as cst
-# import sprites as sp
+import constants as cst
+import sprites as sp
+
 
 class UIElement(ABC):
     """
@@ -31,6 +36,7 @@ class UIElement(ABC):
 
         pass
 
+
 class Text(UIElement):
     """
     Classe que desenha textos na tela.
@@ -47,6 +53,7 @@ class Text(UIElement):
         text = self.font.render(self.text, True, self.color)
         text_rect = text.get_rect(center=(self.pos_x, self.pos_y))
         self.display.blit(text, text_rect)
+
 
 class Button(UIElement):
     """
@@ -94,6 +101,7 @@ class Button(UIElement):
         text = Text(self.display, self.text, self.text_font, self.color, self.size, [self.pos_x, self.pos_y])
         text.draw()
 
+
 class Interface:
     """
     Classe que controla os atributos e métodos comuns a cada interface do jogo.
@@ -103,10 +111,44 @@ class Interface:
 
 class Title(Interface):
     """
-    Classe que controla a interface de Tela de início do jogo.
+    Classe que controla a interface de Tela de Início do jogo.
     """
-    pass
 
+    def __init__(self, display) -> None:
+        super().__init__(display)
+
+    def run(self) -> None:
+        """
+        Método que atualiza a interface da Tela de Início.
+        """
+
+        if not pg.mixer.music.get_busy():
+            pg.mixer.music.load(cst.MUSIC_TITLE)
+            pg.mixer.music.play(-1)
+
+        text_title = Text(self.display, "SPACIAL GAME", cst.FONT, cst.GREEN, 90, [self.width // 2, 200])
+        play_button = Button(self.display, "PLAY", cst.FONT, cst.GREEN, 20, [self.width // 2, self.height - 250], 150, 30)
+        credits_button = Button(self.display, "CREDITS", cst.FONT, cst.GREEN, 20, [self.width // 2, self.height - 180], 150, 30)
+        exit_button = Button(self.display, "EXIT", cst.FONT, cst.GREEN, 20, [self.width // 2, self.height - 110], 150, 30)
+
+        while self.waiting_player:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    self.quit()
+
+            self.handle_button_press(play_button)
+            self.handle_button_press(credits_button)
+            self.handle_button_press(exit_button)
+
+            self.load_background(cst.BACKGROUND_TITLE)
+
+            text_title.draw()
+            play_button.draw()
+            credits_button.draw()
+            exit_button.draw()
+
+            self.clock.tick(cst.FPS)
+            pg.display.update()
 
 
 class Credits(Interface):
@@ -148,13 +190,70 @@ class Credits(Interface):
 
 class Pause(Interface):
     """
-    Classe que controla a interface de Tela de pause do jogo.
+    Classe que controla a interface de Tela de Pause do jogo.
     """
-    pass
+
+    def __init__(self, display: pg.Surface) -> None:
+        super().__init__(display)
+
+    def run(self) -> None:
+        """
+        Método que atualiza a interface da Tela de Pause.
+        """
+
+        text_pause = Text(self.display, "PAUSE", cst.FONT, cst.GREEN, 90, [self.width // 2, 200])
+        return_game_button = Button(self.display, "RETURN TO GAME", cst.FONT, cst.GREEN, 20, [self.width // 2, self.height - 250], 220, 30)
+        return_menu_button = Button(self.display, "RETURN TO MENU", cst.FONT, cst.GREEN, 20, [self.width // 2, self.height - 180], 220, 30)
+
+        while self.waiting_player:
+
+            for event in pg.event.get():
+                if event.type == QUIT:
+                    self.quit()
+
+            self.handle_button_press(return_game_button)
+            self.handle_button_press(return_menu_button)
+
+            self.load_background(cst.BACKGROUND_PAUSE)
+
+            text_pause.draw()
+            return_game_button.draw()
+            return_menu_button.draw()
+
+            self.clock.tick(cst.FPS)
+            pg.display.update()
 
 
 class Reset(Interface):
     """
-    Classe que controla a interface de Tela de reset do jogo.
+    Classe que controla a interface de Tela de Reset do jogo.
     """
-    pass
+
+    def __init__(self, display: pg.Surface) -> None:
+        super().__init__(display)
+
+    def run(self) -> None:
+        """
+        Método que atualiza a interface da Tela de Reset.
+        """
+
+        text_tryagain = Text(self.display, "DESEJA JOGAR DE NOVO?", cst.FONT, cst.GREEN, 70, [self.width // 2, 150])
+        return_menu_button = Button(self.display, "RETURN TO MENU", cst.FONT, cst.GREEN, 20, [self.width // 2, self.height - 370], 220, 30)
+        exit_button = Button(self.display, "EXIT", cst.FONT, cst.GREEN, 20, [self.width // 2, self.height - 300], 220, 30)
+
+        while self.waiting_player:
+            for event in pg.event.get():
+                if event.type == QUIT:
+                    self.quit()
+
+            self.handle_button_press(return_menu_button)
+            self.handle_button_press(exit_button)
+
+            self.load_background(cst.BACKGROUND_GAMEOVER)
+
+            text_tryagain.draw()
+            return_menu_button.draw()
+            exit_button.draw()
+
+            self.clock.tick(cst.FPS)
+            pg.display.update()

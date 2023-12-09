@@ -60,3 +60,4 @@ class UpdateScreenError(Exception):
     def __init__(self, message="Erro durante a atualização da tela."):
         self.message = message
         super().__init__(self.message)
+    

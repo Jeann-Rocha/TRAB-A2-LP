@@ -15,14 +15,61 @@ class Render:
     Classe que renderiza imagens na tela.
     """
 
-    def __init__(self, display, scale, path_image, *groups) -> None:
+    def __init__(self, display: pg.Surface, scale: list, path_images: list, *groups) -> None:
         self.display = display
         if groups:
-           self.groups = groups[0]
-        self.image = pg.image.load(path_image)
-        self.image = pg.transform.scale(self.image, scale)
-        self.rect = self.image.get_rect()
-        self.mask = pg.mask.from_surface(self.image)
+            self.groups = groups[0]
+        self.images = [pg.image.load(image) for image in path_images] # conjunto de imagens
+        self.images = [pg.transform.scale(image, scale) for image in self.images] # conjunto de imagens escalonadas na tela
+        
+        self.image = self.images[0] # imagem inicial
+        self.rect = self.image.get_rect() # definindo o retângulo da imagem
+        self.mask = pg.mask.from_surface(self.image) # definindo a mascara de colisão da imagem
+
+        self.current_frame = 0 # indíce inicial do conjunto de imagens
+        self.animation_speed = 5 # velocidade (quantidade de frames por atualização)
+        self.animation_timer = 0 # temporizador
+
+        # repetindo algo semelhante ao que está acima, mas para um conjunto de imagens específicas (explosão de sprites)
+        self.explosion_frames = [pg.image.load(image) for image in cst.EXPLOSION]
+        self.explosion_frames = [pg.transform.scale(image, scale) for image in self.explosion_frames]
+
+        self.current_explosion_frame = 0
+        self.explosion_speed = 1
+        self.explosion_timer = 0
+        self.exploded = False
+
+    def animate(self) -> None:
+        """
+        Método que anima os sprites segundo o conjunto de imagens fornecido.
+        """
+
+        self.animation_timer += 1
+        if self.animation_timer >= self.animation_speed:
+            self.animation_timer = 0
+            self.current_frame = (self.current_frame + 1) % len(self.images) # novo indíce do conjunto de imagens
+            self.image = self.images[self.current_frame] # nova imagem
+
+    def animate_explosion(self) -> None:
+        """
+        Método que anima a explosão que ocorre após a morte dos sprites no jogo.
+        """
+
+        # som de explosão
+        if self.current_explosion_frame == 0:
+            explosion_sound = pg.mixer.Sound(cst.EXPLOSION_SOUND)
+            explosion_sound.play()
+
+        if self.current_explosion_frame < len(self.explosion_frames):
+            self.explosion_timer += 1
+            if self.explosion_timer >= self.explosion_speed:
+                self.explosion_timer = 0
+                self.image = self.explosion_frames[self.current_explosion_frame]
+                self.current_explosion_frame += 1
+
+        # morte do sprite
+        if self.current_explosion_frame == len(self.explosion_frames):
+            self.kill()
 
 
 class Background(pg.sprite.Sprite, Render):
@@ -212,6 +259,7 @@ class Player(pg.sprite.Sprite, Render):
         Método para aumentar a vida do player.
         """
         self.lifes += 1
+
 
 class Obstacle(pg.sprite.Sprite, Render):
     """

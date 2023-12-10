@@ -2,13 +2,17 @@
 Módulo que contém as classes e métodos para a construção dos sprites do jogo.
 """
 
-import constants as cst
+# Importando as bibliotecas
+import random
+import time
+import threading
 
 import pygame as pg
 from pygame.locals import *
-import random
-import threading
-import time
+
+import constants as cst
+import exception_game as eg
+
 
 class Render:
     """

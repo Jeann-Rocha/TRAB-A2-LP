@@ -84,7 +84,10 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="constants.html">Constantes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="game.html">Criação do jogo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="game.html">Criação do jogo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="game.html#game.SpacialGame"><code class="docutils literal notranslate"><span class="pre">SpacialGame</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="interface.html">Interface</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="interface.html#interface.Button"><code class="docutils literal notranslate"><span class="pre">Button</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="interface.html#interface.Button.draw"><code class="docutils literal notranslate"><span class="pre">Button.draw()</span></code></a></li>
@@ -96,8 +99,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="interface.html#interface.Interface"><code class="docutils literal notranslate"><span class="pre">Interface</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="interface.html#interface.Interface.handle_button_press"><code class="docutils literal notranslate"><span class="pre">Interface.handle_button_press()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="interface.html#interface.Interface.load_background"><code class="docutils literal notranslate"><span class="pre">Interface.load_background()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="interface.html#interface.Interface.quit"><code class="docutils literal notranslate"><span class="pre">Interface.quit()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="interface.html#interface.Interface.run"><code class="docutils literal notranslate"><span class="pre">Interface.run()</span></code></a></li>
 </ul>
 </li>
@@ -129,8 +130,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="sprites.html#sprites.Boss"><code class="docutils literal notranslate"><span class="pre">Boss</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Boss.draw_life"><code class="docutils literal notranslate"><span class="pre">Boss.draw_life()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Boss.shoot_boss"><code class="docutils literal notranslate"><span class="pre">Boss.shoot_boss()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Boss.update"><code class="docutils literal notranslate"><span class="pre">Boss.update()</span></code></a></li>
 </ul>
 </li>
@@ -141,26 +140,17 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="sprites.html#sprites.Obstacle"><code class="docutils literal notranslate"><span class="pre">Obstacle</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Obstacle.is_boss"><code class="docutils literal notranslate"><span class="pre">Obstacle.is_boss</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Obstacle.new_obstacles"><code class="docutils literal notranslate"><span class="pre">Obstacle.new_obstacles()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Obstacle.shoot_obstacles"><code class="docutils literal notranslate"><span class="pre">Obstacle.shoot_obstacles()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Obstacle.update"><code class="docutils literal notranslate"><span class="pre">Obstacle.update()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="sprites.html#sprites.Player"><code class="docutils literal notranslate"><span class="pre">Player</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Player.draw_lifes"><code class="docutils literal notranslate"><span class="pre">Player.draw_lifes()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Player.increase_fire_rate"><code class="docutils literal notranslate"><span class="pre">Player.increase_fire_rate()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Player.increase_hearth"><code class="docutils literal notranslate"><span class="pre">Player.increase_hearth()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Player.increase_speed"><code class="docutils literal notranslate"><span class="pre">Player.increase_speed()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Player.movements"><code class="docutils literal notranslate"><span class="pre">Player.movements()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Player.shoot_player"><code class="docutils literal notranslate"><span class="pre">Player.shoot_player()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Player.update"><code class="docutils literal notranslate"><span class="pre">Player.update()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="sprites.html#sprites.Render"><code class="docutils literal notranslate"><span class="pre">Render</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Render.animate"><code class="docutils literal notranslate"><span class="pre">Render.animate()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Render.animate_explosion"><code class="docutils literal notranslate"><span class="pre">Render.animate_explosion()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="sprites.html#sprites.Render"><code class="docutils literal notranslate"><span class="pre">Render</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="sprites.html#sprites.Shoot"><code class="docutils literal notranslate"><span class="pre">Shoot</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="sprites.html#sprites.Shoot.update"><code class="docutils literal notranslate"><span class="pre">Shoot.update()</span></code></a></li>
 </ul>
@@ -171,6 +161,7 @@
 <li class="toctree-l2"><a class="reference internal" href="exception_game.html#exception_game.CollisionError"><code class="docutils literal notranslate"><span class="pre">CollisionError</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="exception_game.html#exception_game.GameLoopError"><code class="docutils literal notranslate"><span class="pre">GameLoopError</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="exception_game.html#exception_game.MusicLoadError"><code class="docutils literal notranslate"><span class="pre">MusicLoadError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exception_game.html#exception_game.SoundLoadError"><code class="docutils literal notranslate"><span class="pre">SoundLoadError</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="exception_game.html#exception_game.SpriteGroupError"><code class="docutils literal notranslate"><span class="pre">SpriteGroupError</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="exception_game.html#exception_game.SpriteInstanceError"><code class="docutils literal notranslate"><span class="pre">SpriteInstanceError</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="exception_game.html#exception_game.UpdateScreenError"><code class="docutils literal notranslate"><span class="pre">UpdateScreenError</span></code></a></li>

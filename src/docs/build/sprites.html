@@ -55,8 +55,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#sprites.Boss"><code class="docutils literal notranslate"><span class="pre">Boss</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#sprites.Boss.draw_life"><code class="docutils literal notranslate"><span class="pre">Boss.draw_life()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sprites.Boss.shoot_boss"><code class="docutils literal notranslate"><span class="pre">Boss.shoot_boss()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sprites.Boss.update"><code class="docutils literal notranslate"><span class="pre">Boss.update()</span></code></a></li>
 </ul>
 </li>
@@ -67,26 +65,17 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#sprites.Obstacle"><code class="docutils literal notranslate"><span class="pre">Obstacle</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#sprites.Obstacle.is_boss"><code class="docutils literal notranslate"><span class="pre">Obstacle.is_boss</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sprites.Obstacle.new_obstacles"><code class="docutils literal notranslate"><span class="pre">Obstacle.new_obstacles()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sprites.Obstacle.shoot_obstacles"><code class="docutils literal notranslate"><span class="pre">Obstacle.shoot_obstacles()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sprites.Obstacle.update"><code class="docutils literal notranslate"><span class="pre">Obstacle.update()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#sprites.Player"><code class="docutils literal notranslate"><span class="pre">Player</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#sprites.Player.draw_lifes"><code class="docutils literal notranslate"><span class="pre">Player.draw_lifes()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sprites.Player.increase_fire_rate"><code class="docutils literal notranslate"><span class="pre">Player.increase_fire_rate()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sprites.Player.increase_hearth"><code class="docutils literal notranslate"><span class="pre">Player.increase_hearth()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sprites.Player.increase_speed"><code class="docutils literal notranslate"><span class="pre">Player.increase_speed()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sprites.Player.movements"><code class="docutils literal notranslate"><span class="pre">Player.movements()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sprites.Player.shoot_player"><code class="docutils literal notranslate"><span class="pre">Player.shoot_player()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sprites.Player.update"><code class="docutils literal notranslate"><span class="pre">Player.update()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#sprites.Render"><code class="docutils literal notranslate"><span class="pre">Render</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#sprites.Render.animate"><code class="docutils literal notranslate"><span class="pre">Render.animate()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sprites.Render.animate_explosion"><code class="docutils literal notranslate"><span class="pre">Render.animate_explosion()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#sprites.Render"><code class="docutils literal notranslate"><span class="pre">Render</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sprites.Shoot"><code class="docutils literal notranslate"><span class="pre">Shoot</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#sprites.Shoot.update"><code class="docutils literal notranslate"><span class="pre">Shoot.update()</span></code></a></li>
 </ul>
@@ -137,6 +126,13 @@
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Background.update" title="Link to this definition"></a></dt>
 <dd><p>Método que atualiza o background para movimentar-se enquanto o jogador
 estiver jogando para dar um efeito de dinamicidade ao jogo.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+</section>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
 </dd></dl>
 
 </dd></dl>
@@ -147,22 +143,17 @@ estiver jogando para dar um efeito de dinamicidade ao jogo.</p>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code>, <a class="reference internal" href="#sprites.Render" title="sprites.Render"><code class="xref py py-class docutils literal notranslate"><span class="pre">Render</span></code></a></p>
 <p>Classe de Sprite(s) para o boss do jogo.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="sprites.Boss.draw_life">
-<span class="sig-name descname"><span class="pre">draw_life</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Boss.draw_life" title="Link to this definition"></a></dt>
-<dd><p>Método que desenha no canto inferior direito da tela uma barra vermelha com a vida do boss.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sprites.Boss.shoot_boss">
-<span class="sig-name descname"><span class="pre">shoot_boss</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Boss.shoot_boss" title="Link to this definition"></a></dt>
-<dd><p>Método que atualiza os tiros do boss.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="sprites.Boss.update">
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Boss.update" title="Link to this definition"></a></dt>
 <dd><p>Método que atualiza os movimentos do boss, que estão
 pré-definidos pelo jogo.</p>
+<section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+</section>
+<section id="id2">
+<h2>Returns<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
 </dd></dl>
 
 </dd></dl>
@@ -175,13 +166,27 @@ pré-definidos pelo jogo.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sprites.Items.apply_effect">
 <span class="sig-name descname"><span class="pre">apply_effect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Items.apply_effect" title="Link to this definition"></a></dt>
-<dd><p>Método que aplica o efeito do item (que pode ser temporário) ao jogador</p>
+<dd><p>Método que aplica o efeito do item (que pode ser temporário) ao jogador.</p>
+<section id="id3">
+<h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+</section>
+<section id="id4">
+<h2>Returns<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sprites.Items.update">
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Items.update" title="Link to this definition"></a></dt>
 <dd><p>Método que atualiza a geração de um item no decorrer do jogo.</p>
+<section id="id5">
+<h2>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+</section>
+<section id="id6">
+<h2>Returns<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
 </dd></dl>
 
 </dd></dl>
@@ -197,22 +202,17 @@ pré-definidos pelo jogo.</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="sprites.Obstacle.new_obstacles">
-<span class="sig-name descname"><span class="pre">new_obstacles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Obstacle.new_obstacles" title="Link to this definition"></a></dt>
-<dd><p>Método que gera (aleatoriamente) novos obstáculos.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sprites.Obstacle.shoot_obstacles">
-<span class="sig-name descname"><span class="pre">shoot_obstacles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Obstacle.shoot_obstacles" title="Link to this definition"></a></dt>
-<dd><p>Método que atualiza os tiros do obstáculo.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="sprites.Obstacle.update">
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Obstacle.update" title="Link to this definition"></a></dt>
 <dd><p>Método que atualiza os movimentos dos obstáculos, que estão
 pré-definidos pelo jogo.</p>
+<section id="id7">
+<h2>Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+</section>
+<section id="id8">
+<h2>Returns<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
 </dd></dl>
 
 </dd></dl>
@@ -223,46 +223,55 @@ pré-definidos pelo jogo.</p>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code>, <a class="reference internal" href="#sprites.Render" title="sprites.Render"><code class="xref py py-class docutils literal notranslate"><span class="pre">Render</span></code></a></p>
 <p>Classe de Sprite(s) para o player (jogador) do jogo.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="sprites.Player.draw_lifes">
-<span class="sig-name descname"><span class="pre">draw_lifes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.draw_lifes" title="Link to this definition"></a></dt>
-<dd><p>Método que desenha no canto superior esquerdo da tela as vidas que o player tem.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="sprites.Player.increase_fire_rate">
 <span class="sig-name descname"><span class="pre">increase_fire_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.increase_fire_rate" title="Link to this definition"></a></dt>
 <dd><p>Método para aumentar temporariamente a taxa de tiro.</p>
+<section id="id9">
+<h2>Parameters<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+</section>
+<section id="id10">
+<h2>Returns<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sprites.Player.increase_hearth">
 <span class="sig-name descname"><span class="pre">increase_hearth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.increase_hearth" title="Link to this definition"></a></dt>
 <dd><p>Método para aumentar a vida do player.</p>
+<section id="id11">
+<h2>Parameters<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+</section>
+<section id="id12">
+<h2>Returns<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sprites.Player.increase_speed">
 <span class="sig-name descname"><span class="pre">increase_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.increase_speed" title="Link to this definition"></a></dt>
 <dd><p>Método para aumentar temporariamente a velocidade do player.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sprites.Player.movements">
-<span class="sig-name descname"><span class="pre">movements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.movements" title="Link to this definition"></a></dt>
-<dd><p>Método que atualiza os movimentos do player e limita os mesmos
-para as bordas da tela.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sprites.Player.shoot_player">
-<span class="sig-name descname"><span class="pre">shoot_player</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.shoot_player" title="Link to this definition"></a></dt>
-<dd><p>Método que atualiza os tiros do player.</p>
+<section id="id13">
+<h2>Parameters<a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
+</section>
+<section id="id14">
+<h2>Returns<a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sprites.Player.update">
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.update" title="Link to this definition"></a></dt>
 <dd><p>Método que atualiza os movimentos e tiros do player.</p>
+<section id="id15">
+<h2>Parameters<a class="headerlink" href="#id15" title="Link to this heading"></a></h2>
+</section>
+<section id="id16">
+<h2>Returns<a class="headerlink" href="#id16" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
 </dd></dl>
 
 </dd></dl>
@@ -272,18 +281,6 @@ para as bordas da tela.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Render" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Classe que renderiza imagens na tela.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="sprites.Render.animate">
-<span class="sig-name descname"><span class="pre">animate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Render.animate" title="Link to this definition"></a></dt>
-<dd><p>Método que anima os sprites segundo o conjunto de imagens fornecido.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="sprites.Render.animate_explosion">
-<span class="sig-name descname"><span class="pre">animate_explosion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Render.animate_explosion" title="Link to this definition"></a></dt>
-<dd><p>Método que anima a explosão que ocorre após a morte dos sprites no jogo.</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -296,6 +293,13 @@ para as bordas da tela.</p>
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Shoot.update" title="Link to this definition"></a></dt>
 <dd><p>Método que atualiza os movimentos do tiro, que estão
 pré-definidos pelo jogo.</p>
+<section id="id17">
+<h2>Parameters<a class="headerlink" href="#id17" title="Link to this heading"></a></h2>
+</section>
+<section id="id18">
+<h2>Returns<a class="headerlink" href="#id18" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
 </dd></dl>
 
 </dd></dl>

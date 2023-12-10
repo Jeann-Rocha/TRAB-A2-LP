@@ -115,25 +115,51 @@ class Background(pg.sprite.Sprite, Render):
     """
 
     def __init__(self, display: pg.Surface, scale: list, path_images: list, *groups) -> None:
+        """
+        Método constutor da classe Boss.
+
+        Parameters
+        ----------
+        display : pg.Surface
+            Tela onde acontece o jogo.
+        scale : list
+            Lista contendo os valores x e y da escala do sprite.
+        path_images : list
+            Lista contendo o conjunto de imagens do sprite.
+        groups : pg.sprite.Group
+            Conjunto de grupos que o sprite pertence.
+        
+        Returns
+        -------
+        None.
+        """
+
         pg.sprite.Sprite.__init__(self, *groups)
         Render.__init__(self, display, scale, path_images, *groups)
         
-        self.pos_width = self.display.get_width()
-        self.speed = 1 # velocidade de movimento do background
+        self.__pos_width = self._display.get_width()
+        self.__speed = 1 # velocidade de movimento do background
 
     def update(self) -> None:
         """
         Método que atualiza o background para movimentar-se enquanto o jogador
         estiver jogando para dar um efeito de dinamicidade ao jogo.
+                
+        Parameters
+        ----------
+
+        Returns
+        -------
+        None.
         """
 
-        self.display.blit(self.image, (0, 0))
+        self._display.blit(self.image, (0, 0))
 
-        rel_x = self.pos_width % self.image.get_rect().width # efeito contínuo de deslocamento horizontal
-        self.display.blit(self.image, (rel_x - self.image.get_rect().width, 0)) # redesenha a imagem na tela
+        rel_x = self.__pos_width % self.image.get_rect().width # efeito contínuo de deslocamento horizontal
+        self._display.blit(self.image, (rel_x - self.image.get_rect().width, 0)) # redesenha a imagem na tela
         if rel_x < cst.WIDTH:
-            self.display.blit(self.image, (rel_x, 0))
-        self.pos_width -= self.speed
+            self._display.blit(self.image, (rel_x, 0))
+        self.__pos_width -= self.__speed
 
 
 class Player(pg.sprite.Sprite, Render):
@@ -716,40 +742,77 @@ class Items(pg.sprite.Sprite, Render):
     """
 
     def __init__(self, display: pg.Surface, scale: list, path_images: list, item_type: str, *groups, player: pg.sprite.Group) -> None:
+        """
+        Método constutor da classe Items.
+
+        Parameters
+        ----------
+        display : pg.Surface
+            Tela onde acontece o jogo.
+        scale : list
+            Lista contendo os valores x e y da escala do sprite.
+        path_images : list
+            Lista contendo o conjunto de imagens do sprite.
+        item_type : str
+            Tipo do item ("hearth", "fire_rate" ou "speed")
+        groups : pg.sprite.Group
+            Conjunto de grupos que o sprite pertence.
+        player: pg.sprite.Group
+            Sprite do Player que irá receber o item.
+        
+        Returns
+        -------
+        None.
+        """
+
         pg.sprite.Sprite.__init__(self, *groups)
         Render.__init__(self, display, scale, path_images, *groups)
         
-        self.rect.x = self.display.get_width()
+        self.rect.x = self._display.get_width()
         self.rect.y = random.randint(0, display.get_height() - scale[1])
 
-        self.speed = 5
-        self.animation_speed = 1
+        self.__speed = 5
+        self._animation_speed = 1
 
-        self.player = player
-        self.item_type = item_type # pode ser "fire_rate", "speed" ou "hearth"
+        self.__player = player
+        self.__item_type = item_type # pode ser "fire_rate", "speed" ou "hearth"
 
     def apply_effect(self) -> None:
         """
-        Método que aplica o efeito do item (que pode ser temporário) ao jogador
+        Método que aplica o efeito do item (que pode ser temporário) ao jogador.
+                
+        Parameters
+        ----------
+
+        Returns
+        -------
+        None.
         """
 
-        if self.item_type == "fire_rate": # efeito de cadência no tiro (efeito temporário)
-            self.player.increase_fire_rate()
-        elif self.item_type == "speed": # efeito de velocidade no player (efeito temporário)
-            self.player.increase_speed()
-        elif self.item_type == "hearth": # efeito de escudo no player (efeito permanente)
-            self.player.increase_hearth()
+        if self.__item_type == "fire_rate": # efeito de cadência no tiro (efeito temporário)
+            self.__player.increase_fire_rate()
+        elif self.__item_type == "speed": # efeito de velocidade no player (efeito temporário)
+            self.__player.increase_speed()
+        elif self.__item_type == "hearth": # efeito de escudo no player (efeito permanente)
+            self.__player.increase_hearth()
 
     def update(self) -> None:
         """
         Método que atualiza a geração de um item no decorrer do jogo.
+                
+        Parameters
+        ----------
+
+        Returns
+        -------
+        None.
         """
 
-        self.display.blit(self.image, (self.rect.x, self.rect.y))
+        self._display.blit(self.image, (self.rect.x, self.rect.y))
 
-        self.rect.x -= self.speed
+        self.rect.x -= self.__speed
 
-        self.animate()
+        self._animate()
 
         if self.rect.right < 0:
             self.kill()

@@ -15,29 +15,113 @@ class Render:
     Classe que renderiza imagens na tela.
     """
 
-    def __init__(self, display, scale, path_image, *groups) -> None:
-        self.display = display
+    def __init__(self, display: pg.Surface, scale: list, path_images: list, *groups) -> None:
+        """
+        Método constutor da classe Render.
+
+        Parameters
+        ----------
+        display : pg.Surface
+            Tela onde acontece o jogo.
+        scale : list
+            Lista contendo os valores x e y da escala do sprite.
+        path_images : list
+            Lista contendo o conjunto de imagens do sprite.
+        groups : 
+            Conjunto de grupos que o sprite pertence.
+        
+        Returns
+        -------
+        None.
+        """
+
+        self._display = display
         if groups:
-           self.groups = groups[0]
-        self.image = pg.image.load(path_image)
-        self.image = pg.transform.scale(self.image, scale)
-        self.rect = self.image.get_rect()
-        self.mask = pg.mask.from_surface(self.image)
+            self._groups = groups[0]
+        self.__images = [pg.image.load(image) for image in path_images] # conjunto de imagens
+        self.__images = [pg.transform.scale(image, scale) for image in self.__images] # conjunto de imagens escalonadas na tela
+        
+        self.image = self.__images[0] # imagem inicial
+        self.rect = self.image.get_rect() # definindo o retângulo da imagem
+        self._mask = pg.mask.from_surface(self.image) # definindo a mascara de colisão da imagem
+
+        self.__current_frame = 0 # indíce inicial do conjunto de imagens
+        self._animation_speed = 5 # velocidade (quantidade de frames por atualização)
+        self._animation_timer = 0 # temporizador
+
+        # repetindo algo semelhante ao que está acima, mas para um conjunto de imagens específicas (explosão de sprites)
+        self.__explosion_frames = [pg.image.load(image) for image in cst.EXPLOSION]
+        self.__explosion_frames = [pg.transform.scale(image, scale) for image in self.__explosion_frames]
+
+        self.__current_explosion_frame = 0
+        self.__explosion_speed = 1
+        self.__explosion_timer = 0
+        self.exploded = False
+
+    def _animate(self) -> None:
+        """
+        Método que anima os sprites segundo o conjunto de imagens fornecido.
+        
+        Parameters
+        ----------
+
+        Returns
+        -------
+        None.
+
+        """
+
+        self._animation_timer += 1
+        if self._animation_timer >= self._animation_speed:
+            self._animation_timer = 0
+            self.__current_frame = (self.__current_frame + 1) % len(self.__images) # novo indíce do conjunto de imagens
+            self.image = self.__images[self.__current_frame] # nova imagem
+
+    def _animate_explosion(self) -> None:
+        """
+        Método que anima a explosão que ocorre após a morte dos sprites no jogo.
+                
+        Parameters
+        ----------
+
+        Returns
+        -------
+        None.
+        """
+
+        # som de explosão
+        if self.__current_explosion_frame == 0:
+            try:
+                explosion_sound = pg.mixer.Sound(cst.EXPLOSION_SOUND)
+                explosion_sound.play()
+            except pg.error as e:
+                raise eg.SoundLoadError(f"Detalhes do erro: {e}")
+
+        if self.__current_explosion_frame < len(self.__explosion_frames):
+            self.__explosion_timer += 1
+            if self.__explosion_timer >= self.__explosion_speed:
+                self.__explosion_timer = 0
+                self.image = self.__explosion_frames[self.__current_explosion_frame]
+                self.__current_explosion_frame += 1
+
+        # morte do sprite
+        if self.__current_explosion_frame == len(self.__explosion_frames):
+            self.kill()
 
 
 class Background(pg.sprite.Sprite, Render):
     """
     Classe de Sprite(s) para o cenário do jogo.
     """
-    def __init__(self, display, scale, path_images, *groups) -> None:
+
+    def __init__(self, display: pg.Surface, scale: list, path_images: list, *groups) -> None:
         pg.sprite.Sprite.__init__(self, *groups)
         Render.__init__(self, display, scale, path_images, *groups)
         
         self.pos_width = self.display.get_width()
-        self.speed = 1
+        self.speed = 1 # velocidade de movimento do background
 
-
-    def update(self):
+    def update(self) -> None:
         """
         Método que atualiza o background para movimentar-se enquanto o jogador
         estiver jogando para dar um efeito de dinamicidade ao jogo.
@@ -45,9 +129,9 @@ class Background(pg.sprite.Sprite, Render):
 
         self.display.blit(self.image, (0, 0))
 
-        rel_x = self.pos_width % self.image.get_rect().width
-        self.display.blit(self.image, (rel_x - self.image.get_rect().width, 0))
-        if rel_x < 1200:
+        rel_x = self.pos_width % self.image.get_rect().width # efeito contínuo de deslocamento horizontal
+        self.display.blit(self.image, (rel_x - self.image.get_rect().width, 0)) # redesenha a imagem na tela
+        if rel_x < cst.WIDTH:
             self.display.blit(self.image, (rel_x, 0))
         self.pos_width -= self.speed
 
@@ -416,39 +500,74 @@ class Shoot(pg.sprite.Sprite, Render):
     Classe de Sprite(s) para os disparos (tiros) do jogo.
     """
 
-    def __init__(self, display, scale, path_images, pos, speed_sprite, is_obstacle=False, *groups) -> None:
+    def __init__(self, display: pg.Surface, scale: int, path_images: list, pos: tuple, speed_sprite: float, is_obstacle=False, *groups) -> None:
+        """
+        Método constutor da classe Shoot.
+
+        Parameters
+        ----------
+        display : pg.Surface
+            Tela onde acontece o jogo.
+        scale : list
+            Lista contendo os valores x e y da escala do sprite.
+        path_images : list
+            Lista contendo o conjunto de imagens do sprite.
+        pos : tuple
+            Tupla contendo as posições x e y do sprite.
+        speed_sprite: float
+            Velocidade do sprite que terá o tiro.
+        is_obstacle: bool (Opcional)
+            Instância que verifica que se o sprite não é o player.
+        groups : pg.sprite.Group
+            Conjunto de grupos que o sprite pertence.
+        
+        Returns
+        -------
+        None.
+        """
+
         pg.sprite.Sprite.__init__(self, *groups)
         Render.__init__(self, display, scale, path_images, *groups)
 
-        self.is_obstacle = is_obstacle
-        self.obstacle = None
+        self.__is_obstacle = is_obstacle # deve ser verdadeiro para obstáculos ou boss
         self.rect.x = pos[0]
         self.rect.y = pos[1]
-        shoot_sound = pg.mixer.Sound(cst.SHOOT_SOUND)
-        shoot_sound.play()
 
-        self.speed = speed_sprite + 5
-    
+        # som do tiro
+        try:
+            shoot_sound = pg.mixer.Sound(cst.SHOOT_SOUND)
+            shoot_sound.play()
+        except pg.error as e:
+            raise eg.SoundLoadError(f"Detalhes do erro: {e}")
 
-    def update(self):
+        self.__speed = speed_sprite + 5
+
+    def update(self) -> None:
         """
         Método que atualiza os movimentos do tiro, que estão
         pré-definidos pelo jogo.
+                
+        Parameters
+        ----------
+
+        Returns
+        -------
+        None.
         """
 
-        self.display.blit(self.image, (self.rect.x, self.rect.y))
+        self._display.blit(self.image, (self.rect.x, self.rect.y))
 
-        self.animate()
+        self._animate()
 
-        if self.is_obstacle:
-            self.rect.x -= self.speed
+        if self.__is_obstacle: # tiro do obstáculo ou do boss
+            self.rect.x -= self.__speed
 
             if self.rect.right < 0:
                 self.kill()
-        else:
-            self.rect.x += self.speed
+        else: # tiro do player
+            self.rect.x += self.__speed
 
-            if self.rect.left > self.display.get_width():
+            if self.rect.left > self._display.get_width():
                 self.kill()
 
 
@@ -457,69 +576,180 @@ class Boss(pg.sprite.Sprite, Render):
     Classe de Sprite(s) para o boss do jogo.
     """
 
-    speedx = 5
+    def __init__(self, display: pg.Surface, scale: list, path_images: list, speed_increment: float, lifes: int, *groups, group_shoot: pg.sprite.Group) -> None:
+        """
+        Método constutor da classe Boss.
 
-    def __init__(self, display, scale, path_images, speed_increment, *groups, group_shoot) -> None:
+        Parameters
+        ----------
+        display : pg.Surface
+            Tela onde acontece o jogo.
+        scale : list
+            Lista contendo os valores x e y da escala do sprite.
+        path_images : list
+            Lista contendo o conjunto de imagens do sprite.
+        speed_increment : float
+            Incremento na velocidade do boss.
+        lifes: int
+            Vidas do boss.
+        groups : pg.sprite.Group
+            Conjunto de grupos que o sprite pertence.
+        group_shoot: pg.sprite.Group
+            Sprite do tiro que será utilizado pelo boss.
+        
+        Returns
+        -------
+        None.
+        """
+
         pg.sprite.Sprite.__init__(self, *groups)
         Render.__init__(self, display, scale, path_images, *groups)
 
-        self.animation_speed = 10
-        self.lifes = 10
-        self.rect.x = self.display.get_width()
+        self.rect.x = self._display.get_width()
         self.rect.y = 0
-        self.speedy = speed_increment / 5 + 20
-        self.verificate_speedy = "DOWN"
-        self.speed = speed_increment / 5
 
-        self.group_shoot = group_shoot
-        self.last_shoot_time = 0
-        self.start_time = time.time()
-        boss_sound = pg.mixer.Sound(cst.BOSS_SOUND_1)
-        boss_sound.play()
+        self.speedx = 5 # velocidade de entrada
+        self.__speedy = speed_increment / 5 + 20 # velocidade de continuação
+        self.__verificate_speedy = "DOWN" # verifica se o boss já apareceu completamente na tela
+        self.__speed = speed_increment / 5
+        self._animation_speed = 8
 
+        self.__group_shoot = group_shoot
+        self.__last_shoot_time = 0
+        self.__start_time = time.time()
 
-    def shoot_boss(self):
+        self.lifes = lifes
+        self.damaged = False # indicador de que o boss levou dano
+
+        # som de entrada do boss
+        try:
+            boss_sound = pg.mixer.Sound(cst.BOSS_SOUND)
+            boss_sound.play()
+        except pg.error as e:
+            raise eg.SoundLoadError(f"Detalhes do erro: {e}")
+
+    def __draw_life(self) -> None:
+        """
+        Método que desenha no canto inferior direito da tela uma barra vermelha com a vida do boss.
+                
+        Parameters
+        ----------
+
+        Returns
+        -------
+        None.
+        """
+
+        bar_life_width = int((self.lifes / 10) * 200)
+        pg.draw.rect(self._display, cst.RED, (self._display.get_width() - bar_life_width - 10, self._display.get_height() - 50, bar_life_width, 10))
+
+    def __shoot_boss(self) -> None:
+        """
+        Método que atualiza os tiros do boss.
+                
+        Parameters
+        ----------
+
+        Returns
+        -------
+        None.
+        """
+        
         current_time = time.time() + 2
-        time_on_screen = current_time - self.start_time
+        time_on_screen = current_time - self.__start_time
 
-        if time_on_screen >= 5 and current_time - self.last_shoot_time >= 2:
-                self.last_shoot_time = current_time
-                Shoot(self.display, cst.SCALE_SHOOT_BOSS, cst.SHOOT_BOSS, (self.rect.left, random.uniform(self.rect.top, self.rect.bottom)), self.speed, True, (self.groups[0], self.group_shoot))
+        if time_on_screen >= 5 and current_time - self.__last_shoot_time >= 2:
+                self.__last_shoot_time = current_time
+                Shoot(self._display, cst.SCALE_SHOOT_BOSS, cst.SHOOT_BOSS, (self.rect.left, random.uniform(self.rect.top, self.rect.bottom)), self.__speed, True, (self._groups[0], self.__group_shoot))
 
-
-    def update(self):
+    def update(self) -> None:
         """
         Método que atualiza os movimentos do boss, que estão
         pré-definidos pelo jogo.
+                
+        Parameters
+        ----------
+
+        Returns
+        -------
+        None.
         """
 
-        if self.rect.right < 0 or self.exploded:
-            self.groups[1].remove(self)
-
-        self.display.blit(self.image, (self.rect.x, self.rect.y))
+        if self.damaged:
+            self.damaged = False
+        else:
+            self._display.blit(self.image, (self.rect.x, self.rect.y))
 
         self.rect.x -= self.speedx
 
-        if self.rect.right <= self.display.get_width():
+        if self.rect.right <= self._display.get_width(): # enquanto ocorre a entrada do boss
             self.speedx = 0
 
-        if self.speedx == 0:
+        if self.speedx == 0: # após a entrada do boss (movimento de vai-e-vem para cima e para baixo)
             if not self.exploded:
                 if self.rect.top < 0:
-                    self.verificate_speedy = "DOWN"
-                if self.rect.bottom > self.display.get_height():
-                    self.verificate_speedy = "UP"
-                if self.verificate_speedy == "DOWN":
-                    self.rect.y += self.speedy
-                elif self.verificate_speedy == "UP":
-                    self.rect.y -= self.speedy
-                self.animate()
+                    self.__verificate_speedy = "DOWN"
+                if self.rect.bottom > self._display.get_height():
+                    self.__verificate_speedy = "UP"
+                if self.__verificate_speedy == "DOWN":
+                    self.rect.y += self.__speedy
+                elif self.__verificate_speedy == "UP":
+                    self.rect.y -= self.__speedy
+                self._animate()
+                self.__draw_life()
+                self.__shoot_boss()
             else:
-                self.display.blit(self.image, (self.rect.x, self.rect.y))
-                self.animate_explosion()
+                self._display.blit(self.image, (self.rect.x, self.rect.y))
+                self._animate_explosion()
 
         if self.lifes <= 0:
             self.exploded = True
-            self.groups[1].empty()
-        self.shoot_boss()
+            self._groups[1].empty()
 
+        if self.exploded:
+            self._groups[1].remove(self)
+            
+
+class Items(pg.sprite.Sprite, Render):
+    """
+    Classe de sprite(s) para os itens do jogo.
+    """
+
+    def __init__(self, display: pg.Surface, scale: list, path_images: list, item_type: str, *groups, player: pg.sprite.Group) -> None:
+        pg.sprite.Sprite.__init__(self, *groups)
+        Render.__init__(self, display, scale, path_images, *groups)
+        
+        self.rect.x = self.display.get_width()
+        self.rect.y = random.randint(0, display.get_height() - scale[1])
+
+        self.speed = 5
+        self.animation_speed = 1
+
+        self.player = player
+        self.item_type = item_type # pode ser "fire_rate", "speed" ou "hearth"
+
+    def apply_effect(self) -> None:
+        """
+        Método que aplica o efeito do item (que pode ser temporário) ao jogador
+        """
+
+        if self.item_type == "fire_rate": # efeito de cadência no tiro (efeito temporário)
+            self.player.increase_fire_rate()
+        elif self.item_type == "speed": # efeito de velocidade no player (efeito temporário)
+            self.player.increase_speed()
+        elif self.item_type == "hearth": # efeito de escudo no player (efeito permanente)
+            self.player.increase_hearth()
+
+    def update(self) -> None:
+        """
+        Método que atualiza a geração de um item no decorrer do jogo.
+        """
+
+        self.display.blit(self.image, (self.rect.x, self.rect.y))
+
+        self.rect.x -= self.speed
+
+        self.animate()
+
+        if self.rect.right < 0:
+            self.kill()

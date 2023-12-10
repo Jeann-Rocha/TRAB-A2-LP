@@ -43,6 +43,7 @@ pip install -r requirements.txt
 
 ## Especificações
 
+- Para ver um esboço simples da estrutura do jogo, acesse a imagem **esboço.png**.
 - Para ler os arquivos de código, contendo as classes, e os assets do jogo, acesse a pasta **src**.
 - Para entender as regras do jogo, acesse o arquivo **instructions.md**.
 - Para saber a fonte de origem dos assets do jogo (imagens, fonte, música e efeitos sonoros), acesse o arquivo **references.md**.

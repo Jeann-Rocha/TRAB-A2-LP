@@ -409,10 +409,10 @@ class Credits(Interface):
         None.
         """
 
-        text_colaboradores = Text(self._display, "COLABORADORES", cst.FONT, cst.BLACK, 60, [self._width // 2, 100])
+        text_colaboradores = Text(self._display, "COLABORADORES", cst.FONT, cst.RED, 60, [self._width // 2, 100])
         colaborador_1 = Text(self._display, "Alessandra Bello", cst.FONT, cst.WHITE, 30, [self._width // 2, 170])
         colaborador_2 = Text(self._display, "Edgard Junio", cst.FONT, cst.WHITE, 30, [self._width // 2, 240])
-        colaborador_3 = Text(self._display, "Gilherme Ferrari", cst.FONT, cst.WHITE, 30, [self._width // 2, 310])
+        colaborador_3 = Text(self._display, "Guilherme Ferrari", cst.FONT, cst.WHITE, 30, [self._width // 2, 310])
         colaborador_4 = Text(self._display, "Jeann Rocha", cst.FONT, cst.WHITE, 30, [self._width // 2, 380])
         exit_button = Button(self._display, "RETURN TO MENU", cst.FONT, cst.GREEN, 20, [self._width // 2, self._height - 110], 220, 30)
 

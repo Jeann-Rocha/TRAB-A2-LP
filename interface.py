@@ -20,21 +20,52 @@ class UIElement(ABC):
     """
 
     def __init__(self, display: pg.Surface, text: str, font: str, color: tuple, size: int, pos: tuple) -> None:
-        self.display = display
+        """
+        Método constutor da classe UIElement.
+
+        Parameters
+        ----------
+        display : pg.Surface
+            Tela onde acontece o jogo.
+        text : str
+            Texto que será exibido na tela.
+        font : str
+            Fonte do texto.
+        color : tuple
+            Tupla contendo os valores RGB da cor do texto.
+        size : int
+            Tamanho do texto
+        pos : tuple
+            Tupla contendo a posição x e y do texto.
+        
+        Returns
+        -------
+        None.
+        """
+
+        self._display = display
         self.text = text
-        self.font = pg.font.Font(font, size)
-        self.color = color
-        self.size = size
-        self.pos_x = pos[0]
-        self.pos_y = pos[1]
+        self._font = pg.font.Font(font, size)
+        self._color = color
+        self._size = size
+        self._pos_x = pos[0]
+        self._pos_y = pos[1]
 
     @abstractmethod
     def draw(self):
         """
         Método abstrato que caracteriza o ato de desenhar coisas na tela.
+        
+        Parameters
+        ----------
+        
+        Returns
+        -------
+        None.
         """
 
         pass
+
 
 
 class Text(UIElement):
@@ -43,16 +74,46 @@ class Text(UIElement):
     """
 
     def __init__(self, display: pg.Surface, text: str, font: str, color: tuple, size: int, pos: tuple) -> None:
+        """
+        Método constutor da classe Text.
+
+        Parameters
+        ----------
+        display : pg.Surface
+            Tela onde acontece o jogo.
+        text : str
+            Texto que será exibido na tela.
+        font : str
+            Fonte do texto.
+        color : tuple
+            Tupla contendo os valores RGB da cor do texto.
+        size : int
+            Tamanho do texto
+        pos : tuple
+            Tupla contendo a posição x e y do texto.
+        
+        Returns
+        -------
+        None.
+        """
+
         super().__init__(display, text, font, color, size, pos)
 
     def draw(self) -> None:
         """
         Método que permite o desenho de textos na tela.
+        
+        Parameters
+        ----------
+        
+        Returns
+        -------
+        None.
         """
 
-        text = self.font.render(self.text, True, self.color)
-        text_rect = text.get_rect(center=(self.pos_x, self.pos_y))
-        self.display.blit(text, text_rect)
+        text = self._font.render(self.text, True, self._color)
+        text_rect = text.get_rect(center=(self._pos_x, self._pos_y))
+        self._display.blit(text, text_rect)
 
 
 class Button(UIElement):
@@ -61,17 +122,51 @@ class Button(UIElement):
     """
 
     def __init__(self, display: pg.Surface, text: str, font: str, color: tuple, size: int, pos: tuple, width: int, height: int) -> None:
+        """
+        Método constutor da classe Button.
+
+        Parameters
+        ----------
+        display : pg.Surface
+            Tela onde acontece o jogo.
+        text : str
+            Texto que será exibido na tela.
+        font : str
+            Fonte do texto.
+        color : tuple
+            Tupla contendo os valores RGB da cor do texto.
+        size : int
+            Tamanho do texto
+        pos : tuple
+            Tupla contendo a posição x e y do texto.
+        width : int
+            Comprimento do botão.
+        height : int
+            Largura do botão.
+
+        Returns
+        -------
+        None.
+        """
+
         super().__init__(display, text, font, color, size, pos)
 
-        self.text_font = font
-        self.width = width
-        self.height = height
+        self._text_font = font
+        self._width = width
+        self._height = height
+        self._color_button = cst.WHITE
         self.is_pressed = False
-        self.color_button = cst.WHITE
 
     def draw(self) -> None:
         """
         Método que permite o desenho de butões na tela
+        
+        Parameters
+        ----------
+        
+        Returns
+        -------
+        None.
         """
 
         # Coleta as posições do mouse
@@ -79,26 +174,26 @@ class Button(UIElement):
 
         # Condição para trocar de cor caso o mouse colida e verificar se houve click
         if (
-            self.pos_x - self.width // 2 - 2 <= mouse_x <= self.pos_x - self.width // 2 + self.width + 2
+            self._pos_x - self._width // 2 - 2 <= mouse_x <= self._pos_x - self._width // 2 + self._width + 2
         ) and (
-            self.pos_y - self.height // 2 - 4 <= mouse_y <= self.pos_y - self.height // 2 + self.height + 2
+            self._pos_y - self._height // 2 - 4 <= mouse_y <= self._pos_y - self._height // 2 + self._height + 2
         ):
-            self.color_button = cst.BLUE
+            self._color_button = cst.BLUE
             if pg.mouse.get_pressed()[0]:
                 self.is_pressed = True
             else:
                 self.is_pressed = False
         else:
-            self.color_button = cst.WHITE
+            self._color_button = cst.WHITE
 
         # Desenha a borda do botão
-        pg.draw.rect(self.display, cst.BLACK, (self.pos_x - self.width // 2 - 2, self.pos_y - self.height // 2 - 4, self.width + 4, self.height + 6), 0)
+        pg.draw.rect(self._display, cst.BLACK, (self._pos_x - self._width // 2 - 2, self._pos_y - self._height // 2 - 4, self._width + 4, self._height + 6), 0)
 
         # Desenha o botão
-        pg.draw.rect(self.display, self.color_button, (self.pos_x - self.width // 2, self.pos_y - self.height // 2 - 2, self.width, self.height), 0)
+        pg.draw.rect(self._display, self._color_button, (self._pos_x - self._width // 2, self._pos_y - self._height // 2 - 2, self._width, self._height), 0)
 
         # Desenha o texto do botão
-        text = Text(self.display, self.text, self.text_font, self.color, self.size, [self.pos_x, self.pos_y])
+        text = Text(self._display, self.text, self._text_font, self._color, self._size, [self._pos_x, self._pos_y])
         text.draw()
 
 

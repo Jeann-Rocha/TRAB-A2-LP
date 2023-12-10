@@ -1,7 +1,7 @@
-Criação constantes
-==================
+Constantes
+==========
 
-Constantes para utilização no código.
+Módulo que contém as constantes universais para utilização nos demais códigos.
 
 .. automodule:: constants
    :members:

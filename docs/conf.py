@@ -11,7 +11,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../'))
 
-project = 'Documentação Jogo Dr. Who'
+project = 'Documentação Jogo Spacial Game'
 copyright = '2023, Alessandra Belló, Guilherme Ferrari, Jeann Rocha e Edgard Junio'
 author = 'Alessandra Belló, Guilherme Ferrari, Jeann Rocha e Edgard Junio'
 release = '0.1'

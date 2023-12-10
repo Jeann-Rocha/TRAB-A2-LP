@@ -1,7 +1,7 @@
-Criação da interface
-====================
+Interface
+=========
 
-Classes que gera a interface.
+Classes que definem as interfaces do jogo (botões, textos, telas...).
 
 .. automodule:: interface
    :members:

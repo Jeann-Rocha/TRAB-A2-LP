@@ -1,7 +1,7 @@
-Criação do jogo em si
-=====================
+Criação do jogo
+===============
 
-Criação das classes que executam o jogo.
+Classes que executam o jogo.
 
 .. automodule:: game
    :members:

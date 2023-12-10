@@ -2,9 +2,10 @@ Módulos
 =======
  
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 5
 
    constants
    game
    interface
    sprites
+   exception_game

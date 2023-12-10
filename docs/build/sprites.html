@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Criação dos sprites &mdash; documentação Documentação Jogo Dr. Who 0.1</title>
+  <title>Sprites &mdash; documentação Documentação Jogo Spacial Game 0.1</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -20,7 +20,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Buscar" href="search.html" />
-    <link rel="prev" title="Criação da interface" href="interface.html" /> 
+    <link rel="next" title="Exceções" href="exception_game.html" />
+    <link rel="prev" title="Interface" href="interface.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +33,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            Documentação Jogo Dr. Who
+            Documentação Jogo Spacial Game
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -45,21 +46,54 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Módulos</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="constants.html">Criação constantes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="game.html">Criação do jogo em si</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interface.html">Criação da interface</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Criação dos sprites</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#sprites.Background"><code class="docutils literal notranslate"><span class="pre">Background</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sprites.Boss"><code class="docutils literal notranslate"><span class="pre">Boss</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sprites.Obstacle"><code class="docutils literal notranslate"><span class="pre">Obstacle</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sprites.Player"><code class="docutils literal notranslate"><span class="pre">Player</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sprites.Render"><code class="docutils literal notranslate"><span class="pre">Render</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="constants.html">Constantes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game.html">Criação do jogo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html">Interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sprites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sprites.Background"><code class="docutils literal notranslate"><span class="pre">Background</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Background.update"><code class="docutils literal notranslate"><span class="pre">Background.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sprites.Boss"><code class="docutils literal notranslate"><span class="pre">Boss</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Boss.draw_life"><code class="docutils literal notranslate"><span class="pre">Boss.draw_life()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Boss.shoot_boss"><code class="docutils literal notranslate"><span class="pre">Boss.shoot_boss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Boss.update"><code class="docutils literal notranslate"><span class="pre">Boss.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sprites.Items"><code class="docutils literal notranslate"><span class="pre">Items</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Items.apply_effect"><code class="docutils literal notranslate"><span class="pre">Items.apply_effect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Items.update"><code class="docutils literal notranslate"><span class="pre">Items.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sprites.Obstacle"><code class="docutils literal notranslate"><span class="pre">Obstacle</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Obstacle.is_boss"><code class="docutils literal notranslate"><span class="pre">Obstacle.is_boss</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Obstacle.new_obstacles"><code class="docutils literal notranslate"><span class="pre">Obstacle.new_obstacles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Obstacle.shoot_obstacles"><code class="docutils literal notranslate"><span class="pre">Obstacle.shoot_obstacles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Obstacle.update"><code class="docutils literal notranslate"><span class="pre">Obstacle.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sprites.Player"><code class="docutils literal notranslate"><span class="pre">Player</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Player.draw_lifes"><code class="docutils literal notranslate"><span class="pre">Player.draw_lifes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Player.increase_fire_rate"><code class="docutils literal notranslate"><span class="pre">Player.increase_fire_rate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Player.increase_hearth"><code class="docutils literal notranslate"><span class="pre">Player.increase_hearth()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Player.increase_speed"><code class="docutils literal notranslate"><span class="pre">Player.increase_speed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Player.movements"><code class="docutils literal notranslate"><span class="pre">Player.movements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Player.shoot_player"><code class="docutils literal notranslate"><span class="pre">Player.shoot_player()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Player.update"><code class="docutils literal notranslate"><span class="pre">Player.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sprites.Render"><code class="docutils literal notranslate"><span class="pre">Render</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Render.animate"><code class="docutils literal notranslate"><span class="pre">Render.animate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprites.Render.animate_explosion"><code class="docutils literal notranslate"><span class="pre">Render.animate_explosion()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#sprites.Shoot"><code class="docutils literal notranslate"><span class="pre">Shoot</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#sprites.Shoot.update"><code class="docutils literal notranslate"><span class="pre">Shoot.update()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="exception_game.html">Exceções</a></li>
 </ul>
 </li>
 </ul>
@@ -70,7 +104,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Documentação Jogo Dr. Who</a>
+          <a href="index.html">Documentação Jogo Spacial Game</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -79,7 +113,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="modules.html">Módulos</a></li>
-      <li class="breadcrumb-item active">Criação dos sprites</li>
+      <li class="breadcrumb-item active">Sprites</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/sprites.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
       </li>
@@ -89,53 +123,177 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="criacao-dos-sprites">
-<h1>Criação dos sprites<a class="headerlink" href="#criacao-dos-sprites" title="Link to this heading"></a></h1>
-<p>Classes que geram os sprites.</p>
+  <section id="sprites">
+<h1>Sprites<a class="headerlink" href="#sprites" title="Link to this heading"></a></h1>
+<p>Classes que definem os sprites do jogo.</p>
 <p id="module-sprites">Módulo que contém as classes e métodos para a construção dos sprites do jogo.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="sprites.Background">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Background" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Background" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code>, <a class="reference internal" href="#sprites.Render" title="sprites.Render"><code class="xref py py-class docutils literal notranslate"><span class="pre">Render</span></code></a></p>
 <p>Classe de Sprite(s) para o cenário do jogo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Background.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Background.update" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza o background para movimentar-se enquanto o jogador
+estiver jogando para dar um efeito de dinamicidade ao jogo.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sprites.Boss">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Boss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Boss" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Boss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_increment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lifes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_shoot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Boss" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code>, <a class="reference internal" href="#sprites.Render" title="sprites.Render"><code class="xref py py-class docutils literal notranslate"><span class="pre">Render</span></code></a></p>
 <p>Classe de Sprite(s) para o boss do jogo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Boss.draw_life">
+<span class="sig-name descname"><span class="pre">draw_life</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Boss.draw_life" title="Link to this definition"></a></dt>
+<dd><p>Método que desenha no canto inferior direito da tela uma barra vermelha com a vida do boss.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Boss.shoot_boss">
+<span class="sig-name descname"><span class="pre">shoot_boss</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Boss.shoot_boss" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza os tiros do boss.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Boss.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Boss.update" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza os movimentos do boss, que estão
+pré-definidos pelo jogo.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sprites.Items">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Items" title="Link to this definition"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code>, <a class="reference internal" href="#sprites.Render" title="sprites.Render"><code class="xref py py-class docutils literal notranslate"><span class="pre">Render</span></code></a></p>
+<p>Classe de sprite(s) para os itens do jogo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Items.apply_effect">
+<span class="sig-name descname"><span class="pre">apply_effect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Items.apply_effect" title="Link to this definition"></a></dt>
+<dd><p>Método que aplica o efeito do item (que pode ser temporário) ao jogador</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Items.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Items.update" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza a geração de um item no decorrer do jogo.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sprites.Obstacle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Obstacle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Obstacle" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Obstacle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_increment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_shoot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Obstacle" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code>, <a class="reference internal" href="#sprites.Render" title="sprites.Render"><code class="xref py py-class docutils literal notranslate"><span class="pre">Render</span></code></a></p>
 <p>Classe de Sprite(s) para os obstáculos do jogo.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sprites.Obstacle.is_boss">
+<span class="sig-name descname"><span class="pre">is_boss</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sprites.Obstacle.is_boss" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Obstacle.new_obstacles">
+<span class="sig-name descname"><span class="pre">new_obstacles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Obstacle.new_obstacles" title="Link to this definition"></a></dt>
+<dd><p>Método que gera (aleatoriamente) novos obstáculos.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Obstacle.shoot_obstacles">
+<span class="sig-name descname"><span class="pre">shoot_obstacles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Obstacle.shoot_obstacles" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza os tiros do obstáculo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Obstacle.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Obstacle.update" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza os movimentos dos obstáculos, que estão
+pré-definidos pelo jogo.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sprites.Player">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Player" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_shoot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Player" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code>, <a class="reference internal" href="#sprites.Render" title="sprites.Render"><code class="xref py py-class docutils literal notranslate"><span class="pre">Render</span></code></a></p>
 <p>Classe de Sprite(s) para o player (jogador) do jogo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Player.draw_lifes">
+<span class="sig-name descname"><span class="pre">draw_lifes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.draw_lifes" title="Link to this definition"></a></dt>
+<dd><p>Método que desenha no canto superior esquerdo da tela as vidas que o player tem.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Player.increase_fire_rate">
+<span class="sig-name descname"><span class="pre">increase_fire_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.increase_fire_rate" title="Link to this definition"></a></dt>
+<dd><p>Método para aumentar temporariamente a taxa de tiro.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Player.increase_hearth">
+<span class="sig-name descname"><span class="pre">increase_hearth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.increase_hearth" title="Link to this definition"></a></dt>
+<dd><p>Método para aumentar a vida do player.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Player.increase_speed">
+<span class="sig-name descname"><span class="pre">increase_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.increase_speed" title="Link to this definition"></a></dt>
+<dd><p>Método para aumentar temporariamente a velocidade do player.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Player.movements">
+<span class="sig-name descname"><span class="pre">movements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.movements" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza os movimentos do player e limita os mesmos
+para as bordas da tela.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Player.shoot_player">
+<span class="sig-name descname"><span class="pre">shoot_player</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.shoot_player" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza os tiros do player.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Player.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Player.update" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza os movimentos e tiros do player.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sprites.Render">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_image</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Render" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Render" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Classe que renderiza imagens na tela.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Render.animate">
+<span class="sig-name descname"><span class="pre">animate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Render.animate" title="Link to this definition"></a></dt>
+<dd><p>Método que anima os sprites segundo o conjunto de imagens fornecido.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sprites.Render.animate_explosion">
+<span class="sig-name descname"><span class="pre">animate_explosion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Render.animate_explosion" title="Link to this definition"></a></dt>
+<dd><p>Método que anima a explosão que ocorre após a morte dos sprites no jogo.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sprites.Shoot">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Shoot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_obstacle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_obstacle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Shoot" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sprites.</span></span><span class="sig-name descname"><span class="pre">Shoot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_sprite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_obstacle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Shoot" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code>, <a class="reference internal" href="#sprites.Render" title="sprites.Render"><code class="xref py py-class docutils literal notranslate"><span class="pre">Render</span></code></a></p>
 <p>Classe de Sprite(s) para os disparos (tiros) do jogo.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sprites.Shoot.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sprites.Shoot.update" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sprites.Shoot.update" title="Link to this definition"></a></dt>
 <dd><p>Método que atualiza os movimentos do tiro, que estão
 pré-definidos pelo jogo.</p>
 </dd></dl>
@@ -148,7 +306,8 @@ pré-definidos pelo jogo.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
-        <a href="interface.html" class="btn btn-neutral float-left" title="Criação da interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="interface.html" class="btn btn-neutral float-left" title="Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="exception_game.html" class="btn btn-neutral float-right" title="Exceções" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

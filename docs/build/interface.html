@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Criação da interface &mdash; documentação Documentação Jogo Dr. Who 0.1</title>
+  <title>Interface &mdash; documentação Documentação Jogo Spacial Game 0.1</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -20,8 +20,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Buscar" href="search.html" />
-    <link rel="next" title="Criação dos sprites" href="sprites.html" />
-    <link rel="prev" title="Criação do jogo em si" href="game.html" /> 
+    <link rel="next" title="Sprites" href="sprites.html" />
+    <link rel="prev" title="Criação do jogo" href="game.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -33,7 +33,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            Documentação Jogo Dr. Who
+            Documentação Jogo Spacial Game
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -46,17 +46,48 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Módulos</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="constants.html">Criação constantes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="game.html">Criação do jogo em si</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Criação da interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#interface.Interface"><code class="docutils literal notranslate"><span class="pre">Interface</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#interface.Pause"><code class="docutils literal notranslate"><span class="pre">Pause</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#interface.Reset"><code class="docutils literal notranslate"><span class="pre">Reset</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#interface.Settings"><code class="docutils literal notranslate"><span class="pre">Settings</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#interface.Title"><code class="docutils literal notranslate"><span class="pre">Title</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="constants.html">Constantes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game.html">Criação do jogo</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interface.Button"><code class="docutils literal notranslate"><span class="pre">Button</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interface.Button.draw"><code class="docutils literal notranslate"><span class="pre">Button.draw()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="sprites.html">Criação dos sprites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interface.Credits"><code class="docutils literal notranslate"><span class="pre">Credits</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interface.Credits.run"><code class="docutils literal notranslate"><span class="pre">Credits.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interface.Interface"><code class="docutils literal notranslate"><span class="pre">Interface</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interface.Interface.handle_button_press"><code class="docutils literal notranslate"><span class="pre">Interface.handle_button_press()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interface.Interface.load_background"><code class="docutils literal notranslate"><span class="pre">Interface.load_background()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interface.Interface.quit"><code class="docutils literal notranslate"><span class="pre">Interface.quit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interface.Interface.run"><code class="docutils literal notranslate"><span class="pre">Interface.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interface.Pause"><code class="docutils literal notranslate"><span class="pre">Pause</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interface.Pause.run"><code class="docutils literal notranslate"><span class="pre">Pause.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interface.Reset"><code class="docutils literal notranslate"><span class="pre">Reset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interface.Reset.run"><code class="docutils literal notranslate"><span class="pre">Reset.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interface.Text"><code class="docutils literal notranslate"><span class="pre">Text</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interface.Text.draw"><code class="docutils literal notranslate"><span class="pre">Text.draw()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interface.Title"><code class="docutils literal notranslate"><span class="pre">Title</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interface.Title.run"><code class="docutils literal notranslate"><span class="pre">Title.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interface.UIElement"><code class="docutils literal notranslate"><span class="pre">UIElement</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interface.UIElement.draw"><code class="docutils literal notranslate"><span class="pre">UIElement.draw()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sprites.html">Sprites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exception_game.html">Exceções</a></li>
 </ul>
 </li>
 </ul>
@@ -67,7 +98,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Documentação Jogo Dr. Who</a>
+          <a href="index.html">Documentação Jogo Spacial Game</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -76,7 +107,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="modules.html">Módulos</a></li>
-      <li class="breadcrumb-item active">Criação da interface</li>
+      <li class="breadcrumb-item active">Interface</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/interface.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
       </li>
@@ -86,43 +117,132 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="criacao-da-interface">
-<h1>Criação da interface<a class="headerlink" href="#criacao-da-interface" title="Link to this heading"></a></h1>
-<p>Classes que gera a interface.</p>
+  <section id="interface">
+<h1>Interface<a class="headerlink" href="#interface" title="Link to this heading"></a></h1>
+<p>Classes que definem as interfaces do jogo (botões, textos, telas…).</p>
 <p id="module-interface">Módulo que contém as classes e métodos para a construção dos tipos de interface do jogo.</p>
 <dl class="py class">
+<dt class="sig sig-object py" id="interface.Button">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">Button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#interface.Button" title="Link to this definition"></a></dt>
+<dd><p>Base: <a class="reference internal" href="#interface.UIElement" title="interface.UIElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIElement</span></code></a></p>
+<p>Classe que desenha butões (com textos) na tela.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="interface.Button.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#interface.Button.draw" title="Link to this definition"></a></dt>
+<dd><p>Método que permite o desenho de butões na tela</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="interface.Credits">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">Credits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#interface.Credits" title="Link to this definition"></a></dt>
+<dd><p>Base: <a class="reference internal" href="#interface.Interface" title="interface.Interface"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interface</span></code></a></p>
+<p>Classe que controla a interface de Créditos do jogo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="interface.Credits.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#interface.Credits.run" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza a interface para a Tela de Créditos.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="interface.Interface">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">Interface</span></span><a class="headerlink" href="#interface.Interface" title="Link to this definition"></a></dt>
-<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Classe que controla os atributos e métodos comuns a cada interface do jogo.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">Interface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#interface.Interface" title="Link to this definition"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Classe abstrata que controla a interface de Tela de início do jogo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="interface.Interface.handle_button_press">
+<span class="sig-name descname"><span class="pre">handle_button_press</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#interface.Button" title="interface.Button"><span class="pre">Button</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#interface.Interface.handle_button_press" title="Link to this definition"></a></dt>
+<dd><p>Método que verifica o tipo de butão que foi pressionado e
+faz a devida alteração a depender do tipo de butão.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="interface.Interface.load_background">
+<span class="sig-name descname"><span class="pre">load_background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">background_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#interface.Interface.load_background" title="Link to this definition"></a></dt>
+<dd><p>Método que renderiza um background para a interface.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="interface.Interface.quit">
+<span class="sig-name descname"><span class="pre">quit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#interface.Interface.quit" title="Link to this definition"></a></dt>
+<dd><p>Método que fecha o jogo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="interface.Interface.run">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#interface.Interface.run" title="Link to this definition"></a></dt>
+<dd><p>Método abstrato que atualiza a interface.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="interface.Pause">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">Pause</span></span><a class="headerlink" href="#interface.Pause" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">Pause</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#interface.Pause" title="Link to this definition"></a></dt>
 <dd><p>Base: <a class="reference internal" href="#interface.Interface" title="interface.Interface"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interface</span></code></a></p>
-<p>Classe que controla a interface de Tela de pause do jogo.</p>
+<p>Classe que controla a interface de Tela de Pause do jogo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="interface.Pause.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#interface.Pause.run" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza a interface da Tela de Pause.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="interface.Reset">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">Reset</span></span><a class="headerlink" href="#interface.Reset" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">Reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#interface.Reset" title="Link to this definition"></a></dt>
 <dd><p>Base: <a class="reference internal" href="#interface.Interface" title="interface.Interface"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interface</span></code></a></p>
-<p>Classe que controla a interface de Tela de reset do jogo.</p>
+<p>Classe que controla a interface de Tela de Reset do jogo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="interface.Reset.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#interface.Reset.run" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza a interface da Tela de Reset.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="interface.Settings">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">Settings</span></span><a class="headerlink" href="#interface.Settings" title="Link to this definition"></a></dt>
-<dd><p>Base: <a class="reference internal" href="#interface.Interface" title="interface.Interface"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interface</span></code></a></p>
-<p>Classe que controla a interface de Tela de configurações do jogo.</p>
+<dt class="sig sig-object py" id="interface.Text">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">Text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#interface.Text" title="Link to this definition"></a></dt>
+<dd><p>Base: <a class="reference internal" href="#interface.UIElement" title="interface.UIElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIElement</span></code></a></p>
+<p>Classe que desenha textos na tela.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="interface.Text.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#interface.Text.draw" title="Link to this definition"></a></dt>
+<dd><p>Método que permite o desenho de textos na tela.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="interface.Title">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">Title</span></span><a class="headerlink" href="#interface.Title" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">Title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#interface.Title" title="Link to this definition"></a></dt>
 <dd><p>Base: <a class="reference internal" href="#interface.Interface" title="interface.Interface"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interface</span></code></a></p>
-<p>Classe que controla a interface de Tela de início do jogo.</p>
+<p>Classe que controla a interface de Tela de Início do jogo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="interface.Title.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#interface.Title.run" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza a interface da Tela de Início.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="interface.UIElement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">interface.</span></span><span class="sig-name descname"><span class="pre">UIElement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#interface.UIElement" title="Link to this definition"></a></dt>
+<dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Classe abstrata que representa a criação de componentes visuais nas diversas
+interfaces da tela.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="interface.UIElement.draw">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#interface.UIElement.draw" title="Link to this definition"></a></dt>
+<dd><p>Método abstrato que caracteriza o ato de desenhar coisas na tela.</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -131,8 +251,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
-        <a href="game.html" class="btn btn-neutral float-left" title="Criação do jogo em si" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="sprites.html" class="btn btn-neutral float-right" title="Criação dos sprites" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="game.html" class="btn btn-neutral float-left" title="Criação do jogo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="sprites.html" class="btn btn-neutral float-right" title="Sprites" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

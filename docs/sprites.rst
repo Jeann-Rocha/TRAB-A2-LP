@@ -1,7 +1,7 @@
-Criação dos sprites
-===================
+Sprites
+=======
 
-Classes que geram os sprites.
+Classes que definem os sprites do jogo.
 
 .. automodule:: sprites
    :members:

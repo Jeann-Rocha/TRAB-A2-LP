@@ -1,4 +1,4 @@
-Instruções - Spacial Game
+# Instruções - Spacial Game
 Bem-vindo ao "Spacial Game"! Você está prestes a embarcar em uma aventura temporal cheia de desafios. Aqui estão as regras do jogo para orientá-lo:
 
 ## Controles:

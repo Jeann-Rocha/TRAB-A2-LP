@@ -6,7 +6,8 @@ Módulo Principal
 import sys
 sys.path.insert(0, "./src")
 
-from src.game import SpacialGame
+from game import SpacialGame
 
 # Inicializando o Jogo
-SpacialGame()
+if __name__ == '__main__':
+    SpacialGame()

@@ -39,7 +39,7 @@ class SpacialGame:
         pg.mixer.set_num_channels(100) # número de canais de som
 
         # Criando a Tela de Jogo
-        self.__display = pg.display.set_mode((cst.WIDTH, cst.HEIGHT))
+        self.__display = pg.display.set_mode((cst.WIDTH, cst.HEIGHT), pg.FULLSCREEN)
         pg.display.set_caption(cst.TITLE)
 
         # Criando o Relógio de FPS

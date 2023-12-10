@@ -359,7 +359,7 @@ class SpacialGame:
         self.__gameloop = False
 
         # Construindo a tela de reset
-        reset_screen = intf.Reset(self.__display)
+        reset_screen = intf.Reset(self.__display, self.__score)
         reset_screen.run()
 
         # Encaminhando para o reinício do jogo

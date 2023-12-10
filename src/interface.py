@@ -121,7 +121,7 @@ class Button(UIElement):
     Classe que desenha butões (com textos) na tela.
     """
 
-    def __init__(self, display: pg.Surface, text: str, font: str, color: tuple, size: int, pos: tuple, width: int, height: int) -> None:
+    def __init__(self, display: pg.Surface, text: str, font: str, color: tuple, size: int, pos: tuple, width: int, height: int, is_selected=True) -> None:
         """
         Método constutor da classe Button.
 
@@ -143,6 +143,8 @@ class Button(UIElement):
             Comprimento do botão.
         height : int
             Largura do botão.
+        not_click : bool
+            Instância que informa se o botão é ou não selecionável.
 
         Returns
         -------
@@ -156,6 +158,7 @@ class Button(UIElement):
         self._height = height
         self._color_button = cst.WHITE
         self.is_pressed = False
+        self._is_selected = is_selected
 
     def draw(self) -> None:
         """
@@ -406,10 +409,10 @@ class Credits(Interface):
         None.
         """
 
-        text_colaboradores = Text(self._display, "COLABORADORES", cst.FONT, cst.RED, 60, [self._width // 2, 100])
+        text_colaboradores = Text(self._display, "COLABORADORES", cst.FONT, cst.BLACK, 60, [self._width // 2, 100])
         colaborador_1 = Text(self._display, "Alessandra Bello", cst.FONT, cst.WHITE, 30, [self._width // 2, 170])
         colaborador_2 = Text(self._display, "Edgard Junio", cst.FONT, cst.WHITE, 30, [self._width // 2, 240])
-        colaborador_3 = Text(self._display, "Guilherme Ferrari", cst.FONT, cst.WHITE, 30, [self._width // 2, 310])
+        colaborador_3 = Text(self._display, "Gilherme Ferrari", cst.FONT, cst.WHITE, 30, [self._width // 2, 310])
         colaborador_4 = Text(self._display, "Jeann Rocha", cst.FONT, cst.WHITE, 30, [self._width // 2, 380])
         exit_button = Button(self._display, "RETURN TO MENU", cst.FONT, cst.GREEN, 20, [self._width // 2, self._height - 110], 220, 30)
 
@@ -498,7 +501,7 @@ class Reset(Interface):
     Classe que controla a interface de Tela de Reset do jogo.
     """
 
-    def __init__(self, display: pg.Surface) -> None:
+    def __init__(self, display: pg.Surface, score: int) -> None:
         """
         Método constutor da classe Reset.
 
@@ -506,6 +509,8 @@ class Reset(Interface):
         ----------
         display : pg.Surface
             Tela onde acontece o jogo.
+        score : int
+            Score do jogador após o gameover
         
         Returns
         -------
@@ -513,6 +518,7 @@ class Reset(Interface):
         """
 
         super().__init__(display)
+        self.__score = score
 
     def run(self) -> None:
         """
@@ -527,6 +533,7 @@ class Reset(Interface):
         """
 
         text_tryagain = Text(self._display, "DESEJA JOGAR DE NOVO?", cst.FONT, cst.GREEN, 70, [self._width // 2, 150])
+        score_button = Button(self._display, f"SCORE: {self.__score}", cst.FONT, cst.GREEN, 20, [self._width // 2, self._height - 440], 220, 30, is_selected=False)
         return_menu_button = Button(self._display, "RETURN TO MENU", cst.FONT, cst.GREEN, 20, [self._width // 2, self._height - 370], 220, 30)
         exit_button = Button(self._display, "EXIT", cst.FONT, cst.GREEN, 20, [self._width // 2, self._height - 300], 220, 30)
 
@@ -541,6 +548,7 @@ class Reset(Interface):
             self._load_background(cst.BACKGROUND_GAMEOVER)
 
             text_tryagain.draw()
+            score_button.draw()
             return_menu_button.draw()
             exit_button.draw()
 

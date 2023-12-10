@@ -50,13 +50,34 @@
 <li class="toctree-l2"><a class="reference internal" href="interface.html">Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sprites.html">Sprites</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Exceções</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exception_game.CollisionError"><code class="docutils literal notranslate"><span class="pre">CollisionError</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exception_game.GameLoopError"><code class="docutils literal notranslate"><span class="pre">GameLoopError</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exception_game.MusicLoadError"><code class="docutils literal notranslate"><span class="pre">MusicLoadError</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exception_game.SoundLoadError"><code class="docutils literal notranslate"><span class="pre">SoundLoadError</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exception_game.SpriteGroupError"><code class="docutils literal notranslate"><span class="pre">SpriteGroupError</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exception_game.SpriteInstanceError"><code class="docutils literal notranslate"><span class="pre">SpriteInstanceError</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exception_game.UpdateScreenError"><code class="docutils literal notranslate"><span class="pre">UpdateScreenError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exception_game.CollisionError"><code class="docutils literal notranslate"><span class="pre">CollisionError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exception_game.CollisionError.__init__"><code class="docutils literal notranslate"><span class="pre">CollisionError.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exception_game.GameLoopError"><code class="docutils literal notranslate"><span class="pre">GameLoopError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exception_game.GameLoopError.__init__"><code class="docutils literal notranslate"><span class="pre">GameLoopError.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exception_game.MusicLoadError"><code class="docutils literal notranslate"><span class="pre">MusicLoadError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exception_game.MusicLoadError.__init__"><code class="docutils literal notranslate"><span class="pre">MusicLoadError.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exception_game.SoundLoadError"><code class="docutils literal notranslate"><span class="pre">SoundLoadError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exception_game.SoundLoadError.__init__"><code class="docutils literal notranslate"><span class="pre">SoundLoadError.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exception_game.SpriteGroupError"><code class="docutils literal notranslate"><span class="pre">SpriteGroupError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exception_game.SpriteGroupError.__init__"><code class="docutils literal notranslate"><span class="pre">SpriteGroupError.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exception_game.SpriteInstanceError"><code class="docutils literal notranslate"><span class="pre">SpriteInstanceError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exception_game.SpriteInstanceError.__init__"><code class="docutils literal notranslate"><span class="pre">SpriteInstanceError.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exception_game.UpdateScreenError"><code class="docutils literal notranslate"><span class="pre">UpdateScreenError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exception_game.UpdateScreenError.__init__"><code class="docutils literal notranslate"><span class="pre">UpdateScreenError.__init__()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -97,6 +118,23 @@
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exception_game.</span></span><span class="sig-name descname"><span class="pre">CollisionError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">durante</span> <span class="pre">a</span> <span class="pre">colisão</span> <span class="pre">de</span> <span class="pre">sprites.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exception_game.CollisionError" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Classe que detecta se houve erro durante a colisão de sprites.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="exception_game.CollisionError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">durante</span> <span class="pre">a</span> <span class="pre">colisão</span> <span class="pre">de</span> <span class="pre">sprites.'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#exception_game.CollisionError.__init__" title="Link to this definition"></a></dt>
+<dd><p>Método construtor da classe CollisionError.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>message: str (Opcional)</dt><dd><p>Mensagem de erro.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py exception">
@@ -104,6 +142,23 @@
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exception_game.</span></span><span class="sig-name descname"><span class="pre">GameLoopError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">durante</span> <span class="pre">a</span> <span class="pre">execução</span> <span class="pre">do</span> <span class="pre">gameloop.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exception_game.GameLoopError" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Classe que detecta se houve erro durante a execução do gameloop.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="exception_game.GameLoopError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">durante</span> <span class="pre">a</span> <span class="pre">execução</span> <span class="pre">do</span> <span class="pre">gameloop.'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#exception_game.GameLoopError.__init__" title="Link to this definition"></a></dt>
+<dd><p>Método construtor da classe GameLoopError.</p>
+<section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>message: str (Opcional)</dt><dd><p>Mensagem de erro.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h2>Returns<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py exception">
@@ -111,6 +166,23 @@
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exception_game.</span></span><span class="sig-name descname"><span class="pre">MusicLoadError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">ao</span> <span class="pre">carregar</span> <span class="pre">música.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exception_game.MusicLoadError" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Classe que detecta se houve erro ao carregar música.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="exception_game.MusicLoadError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">ao</span> <span class="pre">carregar</span> <span class="pre">música.'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#exception_game.MusicLoadError.__init__" title="Link to this definition"></a></dt>
+<dd><p>Método construtor da classe MusicLoadError.</p>
+<section id="id3">
+<h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>message: str (Opcional)</dt><dd><p>Mensagem de erro.</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h2>Returns<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py exception">
@@ -118,6 +190,23 @@
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exception_game.</span></span><span class="sig-name descname"><span class="pre">SoundLoadError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">ao</span> <span class="pre">carregar</span> <span class="pre">efeito</span> <span class="pre">sonoro.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exception_game.SoundLoadError" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Classe que detecta se houve erro ao carregar efeito sonoro.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="exception_game.SoundLoadError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">ao</span> <span class="pre">carregar</span> <span class="pre">efeito</span> <span class="pre">sonoro.'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#exception_game.SoundLoadError.__init__" title="Link to this definition"></a></dt>
+<dd><p>Método construtor da classe SoundLoadError.</p>
+<section id="id5">
+<h2>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>message: str (Opcional)</dt><dd><p>Mensagem de erro.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h2>Returns<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py exception">
@@ -125,6 +214,23 @@
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exception_game.</span></span><span class="sig-name descname"><span class="pre">SpriteGroupError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">ao</span> <span class="pre">criar</span> <span class="pre">grupos</span> <span class="pre">de</span> <span class="pre">sprites.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exception_game.SpriteGroupError" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Classe que detecta se houve erro ao criar grupos de sprites.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="exception_game.SpriteGroupError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">ao</span> <span class="pre">criar</span> <span class="pre">grupos</span> <span class="pre">de</span> <span class="pre">sprites.'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#exception_game.SpriteGroupError.__init__" title="Link to this definition"></a></dt>
+<dd><p>Método construtor da classe SpriteGroupError.</p>
+<section id="id7">
+<h2>Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>message: str (Opcional)</dt><dd><p>Mensagem de erro.</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h2>Returns<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py exception">
@@ -132,6 +238,23 @@
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exception_game.</span></span><span class="sig-name descname"><span class="pre">SpriteInstanceError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">ao</span> <span class="pre">criar</span> <span class="pre">instâncias</span> <span class="pre">de</span> <span class="pre">sprites.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exception_game.SpriteInstanceError" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Classe que detecta se houve erro ao criar instâncias de sprites.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="exception_game.SpriteInstanceError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">ao</span> <span class="pre">criar</span> <span class="pre">instâncias</span> <span class="pre">de</span> <span class="pre">sprites.'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#exception_game.SpriteInstanceError.__init__" title="Link to this definition"></a></dt>
+<dd><p>Método construtor da classe SpriteInstanceError.</p>
+<section id="id9">
+<h2>Parameters<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>message: str (Opcional)</dt><dd><p>Mensagem de erro.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h2>Returns<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py exception">
@@ -139,6 +262,23 @@
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exception_game.</span></span><span class="sig-name descname"><span class="pre">UpdateScreenError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">durante</span> <span class="pre">a</span> <span class="pre">atualização</span> <span class="pre">da</span> <span class="pre">tela.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exception_game.UpdateScreenError" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Classe que detecta se houve erro durante a atualização da tela.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="exception_game.UpdateScreenError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Erro</span> <span class="pre">durante</span> <span class="pre">a</span> <span class="pre">atualização</span> <span class="pre">da</span> <span class="pre">tela.'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#exception_game.UpdateScreenError.__init__" title="Link to this definition"></a></dt>
+<dd><p>Método construtor da classe UpdateScreenError.</p>
+<section id="id11">
+<h2>Parameters<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>message: str (Opcional)</dt><dd><p>Mensagem de erro.</p>
+</dd>
+</dl>
+</section>
+<section id="id12">
+<h2>Returns<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
 </dd></dl>
 
 </section>

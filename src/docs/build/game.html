@@ -48,7 +48,16 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Módulos</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="constants.html">Constantes</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Criação do jogo</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#game.SpacialGame"><code class="docutils literal notranslate"><span class="pre">SpacialGame</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#game.SpacialGame"><code class="docutils literal notranslate"><span class="pre">SpacialGame</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#game.SpacialGame.__beginning"><code class="docutils literal notranslate"><span class="pre">SpacialGame.__beginning()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#game.SpacialGame.__gameover"><code class="docutils literal notranslate"><span class="pre">SpacialGame.__gameover()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#game.SpacialGame.__init__"><code class="docutils literal notranslate"><span class="pre">SpacialGame.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#game.SpacialGame.__kill_sprites"><code class="docutils literal notranslate"><span class="pre">SpacialGame.__kill_sprites()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#game.SpacialGame.__playing"><code class="docutils literal notranslate"><span class="pre">SpacialGame.__playing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#game.SpacialGame.__reset"><code class="docutils literal notranslate"><span class="pre">SpacialGame.__reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#game.SpacialGame.__start_sprites"><code class="docutils literal notranslate"><span class="pre">SpacialGame.__start_sprites()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="interface.html">Interface</a></li>
@@ -93,6 +102,100 @@ criação de sprites e o funcionamento do gameloop.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">game.</span></span><span class="sig-name descname"><span class="pre">SpacialGame</span></span><a class="headerlink" href="#game.SpacialGame" title="Link to this definition"></a></dt>
 <dd><p>Base: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Classe principal do Jogo.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="game.SpacialGame.__beginning">
+<span class="sig-name descname"><span class="pre">__beginning</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.SpacialGame.__beginning" title="Link to this definition"></a></dt>
+<dd><p>Método que constrói a tela de início e encaminha para o início do jogo,
+criando os sprites, score e o gameloop.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+</section>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="game.SpacialGame.__gameover">
+<span class="sig-name descname"><span class="pre">__gameover</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#game.SpacialGame.__gameover" title="Link to this definition"></a></dt>
+<dd><p>Método que atualiza um texto de gameover na tela e encaminha
+para a interface de reset.</p>
+<section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+</section>
+<section id="id2">
+<h2>Returns<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="game.SpacialGame.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#game.SpacialGame.__init__" title="Link to this definition"></a></dt>
+<dd><p>Método construtor da classe SpacialGame.</p>
+<section id="id3">
+<h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+</section>
+<section id="id4">
+<h2>Returns<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="game.SpacialGame.__kill_sprites">
+<span class="sig-name descname"><span class="pre">__kill_sprites</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#game.SpacialGame.__kill_sprites" title="Link to this definition"></a></dt>
+<dd><p>Método onde se destroem todos os objetos (sprites) de um grupo e da tela.</p>
+<section id="id5">
+<h2>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+</section>
+<section id="id6">
+<h2>Returns<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="game.SpacialGame.__playing">
+<span class="sig-name descname"><span class="pre">__playing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.SpacialGame.__playing" title="Link to this definition"></a></dt>
+<dd><p>Método onde se constrói a jogabilidade do jogo.</p>
+<section id="id7">
+<h2>Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+</section>
+<section id="id8">
+<h2>Returns<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="game.SpacialGame.__reset">
+<span class="sig-name descname"><span class="pre">__reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.SpacialGame.__reset" title="Link to this definition"></a></dt>
+<dd><p>Método onde se destroem todos os objetos (sprites) do jogo e, logo em
+seguida, efetua o reinício do mesmo.</p>
+<section id="id9">
+<h2>Parameters<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+</section>
+<section id="id10">
+<h2>Returns<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="game.SpacialGame.__start_sprites">
+<span class="sig-name descname"><span class="pre">__start_sprites</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.SpacialGame.__start_sprites" title="Link to this definition"></a></dt>
+<dd><p>Método onde se definem os objetos (sprites) do jogo.</p>
+<section id="id11">
+<h2>Parameters<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+</section>
+<section id="id12">
+<h2>Returns<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<p>None.</p>
+</section>
+</dd></dl>
+
 </dd></dl>
 
 </section>

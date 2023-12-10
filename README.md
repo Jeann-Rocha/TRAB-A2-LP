@@ -50,4 +50,4 @@ pip install -r requirements.txt
 
 ## Link Sphinxs
 
-https://jeann-rocha.github.io/TRAB-A2-LP/docs/build/index.html
+https://jeann-rocha.github.io/TRAB-A2-LP/src/docs/build/index.html

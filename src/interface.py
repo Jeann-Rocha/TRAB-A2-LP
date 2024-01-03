@@ -302,7 +302,7 @@ class Interface(ABC):
             elif button.text == "RETURN TO GAME": # específico da Tela de Pause
                 pass
             elif button.text == "EXIT": # específico da Tela de Início e de Reset
-                self.quit()
+                self._quit()
 
             self.waiting_player = False # comum a todas as condições acima
 
